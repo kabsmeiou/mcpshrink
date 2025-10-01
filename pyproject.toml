@@ -10,4 +10,9 @@ dependencies = [
     "nlpaug",
     "transformers",
     "sentencepiece",
+    "requests>=2.32.5",
+    "wikipedia>=1.4.0",
+    "nltk>=3.9.2",
+    "wikipedia-api>=0.8.1",
+    "sacremoses>=0.1.1",
 ]
