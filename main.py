@@ -1,19 +1,33 @@
 import asyncio
 
-from query.generation.services import generate_template
-from query.generation.helpers import extract_tool_metadata
+from query.generation.helpers import generate_templates_for_all_tools, expand_templates_for_all_records
 from src.server import create_mcp_server
 from query.generation.helpers import get_mcp_tools
 
 
-def main():
+def generate_queries():
     mcp = create_mcp_server()
+    print("Fetching tools from MCP server...\n")
     tools = asyncio.run(get_mcp_tools(mcp))
     print("Extracted tool metadata:")
-    templates = generate_template(tool_metadata=list(tools)[1])
-    print(templates)
-    print(type(templates))
-    
+    print(tools)
+    print(len(tools))
+    print("Generating templates for all tools...\n")
+    template_records = generate_templates_for_all_tools(tools)
+    print(template_records)
+    print(len(template_records))
+    print()
+    print("Expanding templates for all records...\n")
+    expanded_records = expand_templates_for_all_records(template_records)
+    print(expanded_records)
+    print(len(expanded_records))
+    print("\nDone!")
+    return expanded_records
+
+
+def main():
+    generate_queries()
+
 
 if __name__ == "__main__":
     main()
