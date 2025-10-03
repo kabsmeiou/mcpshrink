@@ -1,6 +1,6 @@
-from augmentors.back_translation import BackTranslationAugmentor
-from augmentors.noise_injection import NoiseInjectionAugmentor
-from augmentors.random_augmentation import RandomAugmentationAugmentor
+from query_augmentation.augmentors.back_translation import BackTranslationAugmentor
+from query_augmentation.augmentors.noise_injection import NoiseInjectionAugmentor
+from query_augmentation.augmentors.random_augmentation import RandomAugmentationAugmentor
 
 
 def query_augmentation(n_variants: int = 3, exclude: list = []):
