@@ -75,7 +75,7 @@ def extract_json_in_text(text: str) -> Optional[dict]:
 
 
 ### formatting ###
-def format_templates(templates: dict, tool_name: str) -> List:
+def format_templates(templates: dict, tool_name: str) -> List[dict]:
     records = []
     for template in templates["templates"]:
         records.append({
