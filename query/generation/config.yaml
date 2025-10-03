@@ -7,3 +7,5 @@ templater:
   reasoning_effort: "medium"
 generator:
   batch_size: 5
+  temperature: 0.8
+  model: "openai/gpt-oss-20b"

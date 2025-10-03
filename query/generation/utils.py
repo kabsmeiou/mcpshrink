@@ -1,5 +1,7 @@
-from typing import Optional
+from typing import List, Optional
 import logging
+import re
+import json
 
 from fastmcp.tools.tool import FunctionTool
 
@@ -56,8 +58,6 @@ def load_generator_config(config_path: str) -> dict:
 
 
 ### Json utils ###
-import json
-import re
 def extract_json_in_text(text: str) -> Optional[dict]:
     # use regex to extract the json part of the response
     # ```json { ... } ``` or ``` { ... } ``
@@ -72,3 +72,27 @@ def extract_json_in_text(text: str) -> Optional[dict]:
         except json.JSONDecodeError:
             return None
     return None
+
+
+### formatting ###
+def format_templates(templates: dict, tool_name: str) -> List:
+    records = []
+    for template in templates["templates"]:
+        records.append({
+            "template": template,
+            "tool_name": tool_name,
+            "mcp_server": templates.get("mcp_server", None)
+        })
+    return records
+
+
+def format_expanded_templates(expanded_templates: dict, original_record: dict) -> List[dict]:
+    records = []
+    for template in expanded_templates.get("expanded_templates", []):
+        records.append({
+            "original_template": original_record.get("template", ""),
+            "expanded_template": template,
+            "tool_name": original_record.get("tool_name", ""),
+            "mcp_server": original_record.get("mcp_server", None)
+        })
+    return records
