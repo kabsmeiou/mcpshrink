@@ -51,13 +51,13 @@ def generate_template(*, tool_metadata: dict, prompt: str=DEFAULT_TEMPLATE_PROMP
                 Response example:
                 ```
                 {{
-                "templates": {{
+                "templates": [
                     "I have {{a}} apples and {{b}} oranges. How many fruits do I have in total?",
                     "What is the sum of {{a}} and {{b}}?",
                     "How much coins will I have if Jason gives me {{a}} coins, Mike gives me {{b}} coins, and Sarah gives me {{c}} coins?",
                     "Calculate the total of {{a}} and {{b}}.",
                     "How many years would it take if I spend {{a}} years in high school and {{b}} years in college?"
-                }}
+                ]
                 }}```
                 """
             },
