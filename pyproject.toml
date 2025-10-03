@@ -3,9 +3,8 @@ name = "mcpshrink"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.12,<3.13"
 dependencies = [
-    "jupyter",
     "ipykernel",
     "nlpaug",
     "transformers",
@@ -15,4 +14,11 @@ dependencies = [
     "nltk>=3.9.2",
     "wikipedia-api>=0.8.1",
     "sacremoses>=0.1.1",
+    "torch>=2.8.0",
+    "torchvision>=0.23.0",
+    "torchaudio>=2.8.0",
 ]
+
+[[tool.uv.index]]
+url = "https://download.pytorch.org/whl/cpu"
+default = true
