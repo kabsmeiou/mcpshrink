@@ -120,7 +120,7 @@ def expand_templates(*, template: dict) -> dict:
     if response_message is None:
         raise ValueError("No response from LLM")
     logger.info(f"LLM Response: {response_message}")
-    logger.info(type(response_message))
+    logger.debug(type(response_message))
     response_message = extract_json_in_text(response_message)
     if response_message is None:
         raise ValueError("Response from LLM is not valid JSON")
