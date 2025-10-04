@@ -5,7 +5,6 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "fastmcp>=2.12.4",
     "groq>=0.32.0",
     "nlpaug",
     "transformers",
@@ -15,4 +14,5 @@ dependencies = [
     "nltk>=3.9.2",
     "wikipedia-api>=0.8.1",
     "sacremoses>=0.1.1",
+    "fastmcp>=2.12.4",
 ]

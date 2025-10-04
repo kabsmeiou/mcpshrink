@@ -4,13 +4,10 @@ import wikipedia
 import wikipediaapi
 import nlpaug.augmenter.char as nac
 
+from query.augmentation.utils import regex_tokenizer, merge_params
+
+
 wiki = wikipediaapi.Wikipedia("ShrinkMCP hacker123@gmail.com", "en")
-
-def regex_tokenizer(text: str):
-    return re.findall(r"\[[^\]]+\]|\w+(?:'\w+)?|[^\w\s]", text)
-
-def merge_params(defaults: dict, user_params: dict | None) -> dict:
-    return {**defaults, **(user_params or {})}
 
 
 class NoiseInjectionAugmentor:
