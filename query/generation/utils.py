@@ -5,8 +5,13 @@ import json
 
 from fastmcp.tools.tool import FunctionTool
 
+from src.models.queries import TemplateQuery, GeneratedQuery
+from src.models.tools import Tool
+
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+
 
 ### Tool metadata extractors ###
 def get_tool_parameters(tool: FunctionTool) -> dict:
@@ -55,24 +60,22 @@ def extract_json_in_text(text: str) -> Optional[dict]:
 
 
 ### formatting ###
-def format_templates(templates: dict, tool_name: str) -> List[dict]:
+def format_templates(templates: dict, tool: Tool) -> List[TemplateQuery]:
     records = []
     for template in templates["templates"]:
-        records.append({
-            "template": template,
-            "tool_name": tool_name,
-            "mcp_server": templates.get("mcp_server", None)
-        })
+        records.append(TemplateQuery(
+            template=template,
+            tool=tool,
+            mcp_server=templates.get("mcp_server", None)
+        ))
     return records
 
 
-def format_expanded_templates(expanded_templates: dict, original_record: dict) -> List[dict]:
+def format_expanded_templates(expanded_templates: dict, original_record: TemplateQuery) -> List[GeneratedQuery]:
     records = []
     for template in expanded_templates.get("expanded_templates", []):
-        records.append({
-            "original_template": original_record.get("template", ""),
-            "expanded_template": template,
-            "tool_name": original_record.get("tool_name", ""),
-            "mcp_server": original_record.get("mcp_server", None)
-        })
+        records.append(GeneratedQuery(
+            template=original_record,
+            expanded_query=template,
+        ))
     return records

@@ -4,6 +4,8 @@ import logging
 from dotenv import load_dotenv
 from groq import Groq
 
+from src.models.tools import Tool
+from src.models.queries import TemplateQuery, GeneratedQuery
 from .utils import extract_json_in_text
 from src.utils import load_config
 
@@ -35,7 +37,7 @@ DEFAULT_TEMPLATE_PROMPT = """
 """
 
 
-def generate_template(*, tool_metadata: dict, prompt: str=DEFAULT_TEMPLATE_PROMPT) -> dict:
+def generate_template(*, tool_metadata: Tool, prompt: str=DEFAULT_TEMPLATE_PROMPT) -> dict:
     client = get_groq_client()
     templater_config = load_config("config.yaml", "templater")
     response = client.chat.completions.create(
@@ -84,7 +86,7 @@ def generate_template(*, tool_metadata: dict, prompt: str=DEFAULT_TEMPLATE_PROMP
     return response_message
 
 
-def expand_templates(*, template: dict) -> dict:
+def expand_templates(*, template: str) -> dict:
     client = get_groq_client()
     generator_config = load_config("config.yaml", "generator")
     response = client.chat.completions.create(
