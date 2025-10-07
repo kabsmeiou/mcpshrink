@@ -3,10 +3,17 @@ import logging
 import re
 import json
 
+import pandas as pd
 from fastmcp.tools.tool import FunctionTool
+
+from src.models.queries import TemplateQuery, GeneratedQuery
+from src.models.tools import Tool
+from src.utils import load_config
+
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+
 
 ### Tool metadata extractors ###
 def get_tool_parameters(tool: FunctionTool) -> dict:
@@ -37,26 +44,6 @@ def get_tool_output(tool: FunctionTool) -> dict:
     return tool_output
 
 
-### Configs ###
-def load_config(config_path: str) -> dict:
-    import yaml
-    with open(config_path, 'r') as file:
-        config = yaml.safe_load(file)
-    return config
-
-
-def load_templater_config(config_path: str) -> dict:
-    config = load_config(config_path)
-    templater_config = config.get('templater', {})
-    return templater_config
-
-
-def load_generator_config(config_path: str) -> dict:
-    config = load_config(config_path)
-    generator_config = config.get('generator', {})
-    return generator_config
-
-
 ### Json utils ###
 def extract_json_in_text(text: str) -> Optional[dict]:
     # use regex to extract the json part of the response
@@ -75,24 +62,58 @@ def extract_json_in_text(text: str) -> Optional[dict]:
 
 
 ### formatting ###
-def format_templates(templates: dict, tool_name: str) -> List[dict]:
+def format_templates(templates: dict, tool: Tool) -> List[TemplateQuery]:
     records = []
     for template in templates["templates"]:
-        records.append({
-            "template": template,
-            "tool_name": tool_name,
-            "mcp_server": templates.get("mcp_server", None)
-        })
+        records.append(TemplateQuery(
+            template=template,
+            tool=tool,
+            mcp_server=templates.get("mcp_server", None)
+        ))
     return records
 
 
-def format_expanded_templates(expanded_templates: dict, original_record: dict) -> List[dict]:
+def format_expanded_templates(expanded_templates: dict, original_record: TemplateQuery) -> List[GeneratedQuery]:
     records = []
     for template in expanded_templates.get("expanded_templates", []):
-        records.append({
-            "original_template": original_record.get("template", ""),
-            "expanded_template": template,
-            "tool_name": original_record.get("tool_name", ""),
-            "mcp_server": original_record.get("mcp_server", None)
-        })
+        records.append(GeneratedQuery(
+            template=original_record,
+            expanded_query=template,
+        ))
     return records
+
+
+## Saving ##
+_config_output_path = None
+
+def get_config_output_path() -> str:
+    global _config_output_path
+    if _config_output_path is None:
+        config = load_config("config.yaml", "paths")
+        _config_output_path = config["output_dir"]
+    return _config_output_path
+
+
+def save_templates_as_csv(records: List[TemplateQuery], file_path: str):
+    data = []
+    for record in records:
+        data.append({
+            "template": record.template,
+            "tool": record.tool.name,
+            "mcp_server": record.mcp_server
+        })
+    df = pd.DataFrame(data)
+    df.to_csv(file_path, index=False)
+
+
+def save_expanded_queries_as_csv(records: List[GeneratedQuery], file_path: str):
+    data = []
+    for record in records:
+        data.append({
+            "expanded_query": record.expanded_query,
+            "template": record.template.template,
+            "tool": record.template.tool.name,
+            "mcp_server": record.template.mcp_server
+        })
+    df = pd.DataFrame(data)
+    df.to_csv(file_path, index=False)

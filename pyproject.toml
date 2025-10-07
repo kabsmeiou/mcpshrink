@@ -14,6 +14,5 @@ dependencies = [
     "nltk>=3.9.2",
     "wikipedia-api>=0.8.1",
     "sacremoses>=0.1.1",
-    "fastmcp>=2.12.4",
-    "pydantic>=2.11.9",
+    "pytest>=8.4.2",
 ]

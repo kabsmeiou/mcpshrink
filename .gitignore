@@ -5,6 +5,7 @@ build/
 dist/
 wheels/
 *.egg-info
+.pytest_cache/
 
 datasets/
 
@@ -16,3 +17,8 @@ datasets/
 notebooks/
 .ipynb_checkpoints/
 query_augmentation/
+
+# others
+/output
+/data
+/logs

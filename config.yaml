@@ -1,0 +1,32 @@
+meta:
+  experiment: "default_experiment"
+  created_at: "2025-10-01"
+  notes: "dummy configs for thesis experiments"
+
+paths:
+  data_dir: "./data"
+  output_dir: "./output"
+  logs_dir: "./logs"
+
+dataset:
+  name: "my_dataset"
+  target_size: 1000 
+
+templater:
+  model: "openai/gpt-oss-20b"
+  templates_per_tool: 5
+  temperature: 0.7
+  reasoning_effort: "medium"
+
+generator:
+  model: "openai/gpt-oss-20b"
+  batch_size: 5
+  temperature: 0.8
+
+augmenter:
+  enabled: true
+  methods:
+    - "back_translation"
+    - "noise_injection"
+    - "random_augmentation"
+  queries_per_method: 3
