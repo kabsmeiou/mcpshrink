@@ -2,7 +2,7 @@ import os
 import yaml
 import tempfile
 
-from query.generation.utils import load_config
+from src.utils import load_config
 
 
 def test_load_full_config():

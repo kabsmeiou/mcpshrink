@@ -4,7 +4,8 @@ import logging
 from dotenv import load_dotenv
 from groq import Groq
 
-from .utils import extract_json_in_text, load_config
+from .utils import extract_json_in_text
+from src.utils import load_config
 
 
 load_dotenv()
