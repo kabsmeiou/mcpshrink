@@ -1,10 +1,8 @@
 import random
-import re
 from typing import List, Dict, Optional
 import nlpaug.augmenter.word as naw
 
-from query.augmentation.utils import regex_tokenizer, merge_params
-from query.augmentation.utils import get_random_word
+from query.augmentation.helpers import regex_tokenizer, merge_params, get_random_word
 
 RANDOM_AUGMENTERS = [
     "synonym_replacement",

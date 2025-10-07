@@ -1,12 +1,14 @@
-import re
-import random
-from nltk.corpus import words
+import yaml
+import json, os
+from typing import Dict, List
 
-def regex_tokenizer(text: str):
-    return re.findall(r"\[[^\]]+\]|\w+(?:'\w+)?|[^\w\s]", text)
 
-def merge_params(defaults: dict, user_params: dict | None) -> dict:
-    return {**defaults, **(user_params or {})}
+def save_dataset_to_json(records: Dict, seed: int):
+    path = f"datasets/seed_{seed}.json"
 
-def get_random_word() -> str:
-    return random.choice(words.words())
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(records, f, indent=4)
+
+    print(f"Saved to {path}")

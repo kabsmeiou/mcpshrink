@@ -1,6 +1,2 @@
 # googletrans dep
-uv pip install --index-url https://pypi.org/simple googletrans==4.0.2
-
-# try this if 'googletrans' module not found in main.py execution
-uv run pip show googletrans
 uv pip install googletrans==4.0.2
