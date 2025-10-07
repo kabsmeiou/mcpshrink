@@ -38,23 +38,11 @@ def get_tool_output(tool: FunctionTool) -> dict:
 
 
 ### Configs ###
-def load_config(config_path: str) -> dict:
+def load_config(config_path: str, section: str | None = None) -> dict:
     import yaml
     with open(config_path, 'r') as file:
         config = yaml.safe_load(file)
-    return config
-
-
-def load_templater_config(config_path: str) -> dict:
-    config = load_config(config_path)
-    templater_config = config.get('templater', {})
-    return templater_config
-
-
-def load_generator_config(config_path: str) -> dict:
-    config = load_config(config_path)
-    generator_config = config.get('generator', {})
-    return generator_config
+    return config.get(section, config) if section else config
 
 
 ### Json utils ###
