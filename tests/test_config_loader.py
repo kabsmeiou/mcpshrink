@@ -1,6 +1,9 @@
+import os
 import yaml
 import tempfile
-from query.generation.utils import load_config, load_generator_config, load_templater_config
+
+from query.generation.utils import load_config
+
 
 def test_load_full_config():
     sample_config = {
@@ -18,6 +21,7 @@ def test_load_full_config():
     assert config['templater']['temperature'] == 0.7
     assert config['generator']['model'] == "test-model"
     assert config['generator']['temperature'] == 0.9
+    os.remove(tmp_path)
 
 
 def test_load_templater_config():
@@ -30,9 +34,12 @@ def test_load_templater_config():
         yaml.dump(sample_config, tmp)
         tmp_path = tmp.name
     
-    templater_config = load_templater_config(tmp_path, "templater")
+    templater_config = load_config(tmp_path, "templater")
     assert templater_config['templates_per_tool'] == 5
     assert templater_config['temperature'] == 0.7
+    assert 'generator' not in templater_config
+    assert 'dataset' not in templater_config
+    os.remove(tmp_path)
 
 
 def test_load_generator_config():
@@ -45,6 +52,9 @@ def test_load_generator_config():
         yaml.dump(sample_config, tmp)
         tmp_path = tmp.name
     
-    generator_config = load_generator_config(tmp_path, "generator")
+    generator_config = load_config(tmp_path, "generator")
     assert generator_config['model'] == "test-model"
     assert generator_config['temperature'] == 0.9
+    assert 'templater' not in generator_config
+    assert 'dataset' not in generator_config
+    os.remove(tmp_path)

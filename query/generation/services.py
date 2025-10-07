@@ -4,7 +4,7 @@ import logging
 from dotenv import load_dotenv
 from groq import Groq
 
-from .utils import load_templater_config, extract_json_in_text, load_generator_config
+from .utils import extract_json_in_text, load_config
 
 
 load_dotenv()
@@ -14,11 +14,13 @@ logger = logging.getLogger(__name__)
 # connect to llm
 _client = None
 
+
 def get_groq_client():
     global _client
     if _client is None:
         _client = Groq(api_key=os.getenv("GROQ_API_KEY"))
     return _client
+
 
 # append the tool_metadata to the end of prompt.
 DEFAULT_TEMPLATE_PROMPT = """
@@ -31,9 +33,10 @@ DEFAULT_TEMPLATE_PROMPT = """
     Here is the tool metadata:
 """
 
+
 def generate_template(*, tool_metadata: dict, prompt: str=DEFAULT_TEMPLATE_PROMPT) -> dict:
     client = get_groq_client()
-    templater_config = load_templater_config("query/generation/config.yaml")
+    templater_config = load_config("config.yaml", "templater")
     response = client.chat.completions.create(
         model=templater_config.get("model", "openai/gpt-oss-20b"),
         messages=[
@@ -82,7 +85,7 @@ def generate_template(*, tool_metadata: dict, prompt: str=DEFAULT_TEMPLATE_PROMP
 
 def expand_templates(*, template: dict) -> dict:
     client = get_groq_client()
-    generator_config = load_generator_config("query/generation/config.yaml")
+    generator_config = load_config("config.yaml", "generator")
     response = client.chat.completions.create(
         model=generator_config.get("model", "openai/gpt-oss-20b"),
         messages=[
