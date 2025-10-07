@@ -85,7 +85,7 @@ def generate_template(*, tool_metadata: dict, prompt: str=DEFAULT_TEMPLATE_PROMP
 
 def expand_templates(*, template: dict) -> dict:
     client = get_groq_client()
-    generator_config = load_config("query/generation/config.yaml", "generator")
+    generator_config = load_config("config.yaml", "generator")
     response = client.chat.completions.create(
         model=generator_config.get("model", "openai/gpt-oss-20b"),
         messages=[
