@@ -31,8 +31,8 @@ def test_load_templater_config():
         tmp_path = tmp.name
     
     templater_config = load_templater_config(tmp_path, "templater")
-    assert templater_config['templates_per_tool'] == 4
-    assert templater_config['temperature'] == 0.5
+    assert templater_config['templates_per_tool'] == 5
+    assert templater_config['temperature'] == 0.7
 
 
 def test_load_generator_config():
