@@ -3,10 +3,12 @@ import logging
 import re
 import json
 
+import pandas as pd
 from fastmcp.tools.tool import FunctionTool
 
 from src.models.queries import TemplateQuery, GeneratedQuery
 from src.models.tools import Tool
+from src.utils import load_config
 
 
 logger = logging.getLogger(__name__)
@@ -79,3 +81,39 @@ def format_expanded_templates(expanded_templates: dict, original_record: Templat
             expanded_query=template,
         ))
     return records
+
+
+## Saving ##
+_config_output_path = None
+
+def get_config_output_path() -> str:
+    global _config_output_path
+    if _config_output_path is None:
+        config = load_config("config.yaml", "paths")
+        _config_output_path = config["output_dir"]
+    return _config_output_path
+
+
+def save_templates_as_csv(records: List[TemplateQuery], file_path: str):
+    data = []
+    for record in records:
+        data.append({
+            "template": record.template,
+            "tool": record.tool.name,
+            "mcp_server": record.mcp_server
+        })
+    df = pd.DataFrame(data)
+    df.to_csv(file_path, index=False)
+
+
+def save_expanded_queries_as_csv(records: List[GeneratedQuery], file_path: str):
+    data = []
+    for record in records:
+        data.append({
+            "expanded_query": record.expanded_query,
+            "template": record.template.template,
+            "tool": record.template.tool.name,
+            "mcp_server": record.template.mcp_server
+        })
+    df = pd.DataFrame(data)
+    df.to_csv(file_path, index=False)

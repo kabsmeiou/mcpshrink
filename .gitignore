@@ -15,3 +15,8 @@ wheels/
 notebooks/
 .ipynb_checkpoints/
 query_augmentation/
+
+# others
+/output
+/data
+/logs
