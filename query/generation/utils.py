@@ -3,6 +3,7 @@ import logging
 import re
 import json
 
+import pandas as pd
 from fastmcp.tools.tool import FunctionTool
 
 from src.models.queries import TemplateQuery, GeneratedQuery
@@ -79,3 +80,29 @@ def format_expanded_templates(expanded_templates: dict, original_record: Templat
             expanded_query=template,
         ))
     return records
+
+
+## Saving ##
+def save_templates_as_csv(records: List[TemplateQuery], file_path: str):
+    data = []
+    for record in records:
+        data.append({
+            "template": record.template,
+            "tool": record.tool.name,
+            "mcp_server": record.mcp_server
+        })
+    df = pd.DataFrame(data)
+    df.to_csv(file_path, index=False)
+
+
+def save_expanded_queries_as_csv(records: List[GeneratedQuery], file_path: str):
+    data = []
+    for record in records:
+        data.append({
+            "expanded_query": record.expanded_query,
+            "template": record.template.template,
+            "tool": record.template.tool.name,
+            "mcp_server": record.template.mcp_server
+        })
+    df = pd.DataFrame(data)
+    df.to_csv(file_path, index=False)
