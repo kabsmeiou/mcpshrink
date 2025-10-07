@@ -1,16 +1,12 @@
 import random
-import re
 import wikipedia
 import wikipediaapi
 import nlpaug.augmenter.char as nac
 
-wiki = wikipediaapi.Wikipedia("ShrinkMCP hacker123@gmail.com", "en")
+from query.augmentation.helpers import regex_tokenizer, merge_params
 
-def regex_tokenizer(text: str):
-    return re.findall(r"\[[^\]]+\]|\w+(?:'\w+)?|[^\w\s]", text)
-
-def merge_params(defaults: dict, user_params: dict | None) -> dict:
-    return {**defaults, **(user_params or {})}
+# The first argument is the user agent, can be changed.
+wiki = wikipediaapi.Wikipedia("ShrinkMCP", "en")
 
 
 class NoiseInjectionAugmentor:
@@ -23,7 +19,7 @@ class NoiseInjectionAugmentor:
     def __init__(
         self,
         typo_params: dict = None,
-        swapletter_params: dict = None,
+        swapletter_params: dict = None
     ):
         """
         Initialize the noise injection augmentor.
@@ -83,10 +79,12 @@ class NoiseInjectionAugmentor:
             try:
                 title = wikipedia.random(pages=1)
                 page = wiki.page(title)
-
+                
+                # Check if wikipedia page exists
                 if not page.exists():
                     continue
-
+                
+                # Check if there's at least one sentence.
                 sentences = page.summary.split(". ")
                 if not sentences:
                     continue

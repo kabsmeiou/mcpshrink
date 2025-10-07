@@ -1,18 +1,8 @@
 import random
-import re
 from typing import List, Dict, Optional
 import nlpaug.augmenter.word as naw
-from nltk.corpus import words
 
-def regex_tokenizer(text: str) -> List[str]:
-    return re.findall(r"\[[^\]]+\]|\w+(?:'\w+)?|[^\w\s]", text)
-
-def get_random_word() -> str:
-    return random.choice(words.words())
-
-def merge_params(defaults: Dict, user_params: Optional[Dict]) -> Dict:
-    return {**defaults, **(user_params or {})}
-
+from query.augmentation.helpers import regex_tokenizer, merge_params, get_random_word
 
 RANDOM_AUGMENTERS = [
     "synonym_replacement",

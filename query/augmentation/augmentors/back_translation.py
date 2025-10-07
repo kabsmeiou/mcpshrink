@@ -1,8 +1,11 @@
 import random
 import re
+import asyncio
 from googletrans import Translator
 
-translator = Translator()
+import logging
+logging.getLogger("httpx").setLevel(logging.WARNING)
+logging.getLogger("wikipediaapi").setLevel(logging.WARNING)
 
 LANGS = [
     "fr", "de", "es", "it", "pt", "ru", "ja", "ko", "zh-cn", "zh-tw",
@@ -12,45 +15,39 @@ LANGS = [
 
 PLACEHOLDER_PATTERN = re.compile(r"\[[^\]]+\]")
 
-
 class BackTranslationAugmentor:
-    """
-    Perform query augmentation using back translation:
-    - Translate text into randomly chosen intermediate languages
-    - Translate back to English
-    - Validate placeholders are preserved
-    """
-
     def __init__(self, hops: int = 2):
-        """
-        Args:
-            hops (int): Number of intermediate translation hops before returning to English.
-        """
         self.hops = hops
 
-    def augment(self, text: str) -> str:
-        """
-        Apply back translation with multiple hops through random languages.
-
-        Args:
-            text (str): The original query.
-
-        Returns:
-            str: The augmented query, or original text if placeholders were not preserved.
-        """
+    async def _augment_async(self, text: str) -> str:
+        translator = Translator(timeout=10)
         placeholders = PLACEHOLDER_PATTERN.findall(text)
 
-        for _ in range(5):
+        for attempt in range(5):
+            fail = False
             intermediate = text
-
             for _ in range(self.hops):
                 lang = random.choice(LANGS)
-                intermediate = translator.translate(intermediate, dest=lang).text
+                try:
+                    translated = await translator.translate(intermediate, dest=lang)
+                    intermediate = translated.text
+                except Exception as e:
+                    if attempt == 4:
+                        print(f"Translation failed: {e}, skipping...")
+                        return text
+                    fail = True
+                    break
 
-            back = translator.translate(intermediate, dest="en").text
+            if fail:
+                continue
 
-            # Validation: all placeholders must remain
+            back = await translator.translate(intermediate, dest="en")
+            back = back.text
+
             if all(ph in back for ph in placeholders):
                 return back
 
         return text
+
+    def augment(self, text: str) -> str:
+        return asyncio.run(self._augment_async(text))
