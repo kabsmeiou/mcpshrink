@@ -15,4 +15,5 @@ dependencies = [
     "nltk>=3.9.2",
     "wikipedia-api>=0.8.1",
     "sacremoses>=0.1.1",
+    "pytest>=8.4.2",
 ]
