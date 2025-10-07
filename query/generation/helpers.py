@@ -6,7 +6,7 @@ from fastmcp.tools.tool import FunctionTool # FunctionTool class from fastmcp co
 
 from src.models.tools import Tool
 from src.models.queries import GeneratedQuery, TemplateQuery
-from .utils import format_expanded_templates, get_tool_parameters, get_tool_description, get_tool_name, get_tool_output, format_templates, save_expanded_queries_as_csv, save_templates_as_csv
+from .utils import format_expanded_templates, get_tool_parameters, get_tool_description, get_tool_name, get_tool_output, format_templates, save_expanded_queries_as_csv, save_templates_as_csv, get_config_output_path
 from .services import expand_templates, generate_template
 from src.utils import load_config
 
@@ -51,18 +51,16 @@ def expand_templates_for_all_records(records: List[TemplateQuery]) -> List[Gener
 
 
 def save_templates(records: List[TemplateQuery], filename: str="templates.csv"):
-    config = load_config("config.yaml", "paths")
-    output_dir = config["output_dir"]
-    os.makedirs(output_dir, exist_ok=True)              # verify if directory exists
+    output_dir = get_config_output_path()
+    os.makedirs(output_dir, exist_ok=True)              # create dir if it exists
     file_path = os.path.join(output_dir, filename)      # create full file path
     save_templates_as_csv(records, file_path)
     logger.info(f"Templates saved to {file_path}")
 
 
 def save_expanded_queries(records: List[GeneratedQuery], filename: str="expanded_queries.csv"):
-    config = load_config("config.yaml", "paths")
-    output_dir = config["output_dir"]
-    os.makedirs(output_dir, exist_ok=True)              # verify if directory exists
-    file_path = os.path.join(output_dir, filename)      # create full file path
+    output_dir = get_config_output_path()
+    os.makedirs(output_dir, exist_ok=True)
+    file_path = os.path.join(output_dir, filename)
     save_expanded_queries_as_csv(records, file_path)
     logger.info(f"Expanded queries saved to {file_path}")

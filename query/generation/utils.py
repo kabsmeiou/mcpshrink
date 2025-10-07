@@ -8,6 +8,7 @@ from fastmcp.tools.tool import FunctionTool
 
 from src.models.queries import TemplateQuery, GeneratedQuery
 from src.models.tools import Tool
+from src.utils import load_config
 
 
 logger = logging.getLogger(__name__)
@@ -83,6 +84,16 @@ def format_expanded_templates(expanded_templates: dict, original_record: Templat
 
 
 ## Saving ##
+_config_output_path = None
+
+def get_config_output_path() -> str:
+    global _config_output_path
+    if _config_output_path is None:
+        config = load_config("config.yaml", "paths")
+        _config_output_path = config["output_dir"]
+    return _config_output_path
+
+
 def save_templates_as_csv(records: List[TemplateQuery], file_path: str):
     data = []
     for record in records:
