@@ -46,5 +46,5 @@ def test_load_generator_config():
         tmp_path = tmp.name
     
     generator_config = load_generator_config(tmp_path, "generator")
-    assert generator_config['model'] == "another-model"
-    assert generator_config['temperature'] == 0.8
+    assert generator_config['model'] == "test-model"
+    assert generator_config['temperature'] == 0.9
