@@ -4,12 +4,12 @@ import random
 
 from models import ExpandedRecord
 
-from query.generation.helpers import generate_templates_for_all_tools, expand_templates_for_all_records, save_expanded_queries, save_templates
+from src.query.generation.helpers import generate_templates_for_all_tools, expand_templates_for_all_records, save_expanded_queries, save_templates
 from src.server import create_mcp_server
-from query.generation.helpers import get_mcp_tools
+from src.query.generation.helpers import get_mcp_tools
 
-from query.augmentation.services import load_augmentation_config, generate_augmented_queries
-from query.augmentation.utils import save_dataset_to_json
+from src.query.augmentation.services import load_augmentation_config, generate_augmented_queries
+from src.query.augmentation.utils import save_dataset_to_json
 
 
 def generate_queries() -> List[ExpandedRecord]:
