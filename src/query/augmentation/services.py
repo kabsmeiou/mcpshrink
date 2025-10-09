@@ -13,12 +13,34 @@ NOISE_INJECTION = "noise_injection"
 RANDOM_AUGMENTATION = "random_augmentation"
 
 
-def load_augmentation_config():
-    config_path = "src/query/augmentation/config.yaml"
-    with open(config_path, "r", encoding="utf-8") as f:
+def load_augmentation_config() -> Dict:
+    with open("config.yaml", "r", encoding="utf-8") as f:
         config = yaml.safe_load(f)
 
-    aug_cfg = config.get("augmentors", {})
+    aug_cfg = config.get("augmenter", {})
+
+    seed = aug_cfg.get("seed", {})
+    exclude = aug_cfg.get("exclude", {})
+    back_translation_variants = aug_cfg.get("back_translation_variants", {})
+    noise_injection_variants = aug_cfg.get("noise_injection_variants", {})
+    random_augmentation_variants = aug_cfg.get("random_augmentation_variants", {})
+
+    cfg = {
+        "seed": seed,
+        "exclude": exclude,
+        BACK_TRANSLATION: back_translation_variants,
+        NOISE_INJECTION: noise_injection_variants,
+        RANDOM_AUGMENTATION: random_augmentation_variants
+    }
+    
+    return cfg
+
+
+def load_augmentors_config() -> Dict:
+    with open("config.yaml", "r", encoding="utf-8") as f:
+        config = yaml.safe_load(f)
+
+    aug_cfg = config.get("augmenter", {}).get("augmentors", {})
 
     backtranslation_config = aug_cfg.get("back_translation", {})
     noise_injection_config = aug_cfg.get("noise_injection", {})
@@ -32,9 +54,13 @@ def load_augmentation_config():
     
     return augmentors
 
-def generate_augmented_queries(records: List[GeneratedQuery], back_translation_variants: int, 
-                               noise_injection_variants: int, random_augmentation_variants: int,
+
+def generate_augmented_queries(records: List[GeneratedQuery], augmentation_config: Dict,
                                active_augmentors: Dict) -> List[AugmentedQuery]:
+    back_translation_variants = augmentation_config.get("back_translation", 1)
+    noise_injection_variants = augmentation_config.get("noise_injection", 1)
+    random_augmentation_variants = augmentation_config.get("random_augmentation", 1)
+
     # Map for number of variants per technique
     variants_map = {
         BACK_TRANSLATION: back_translation_variants,
@@ -66,5 +92,7 @@ def generate_augmented_queries(records: List[GeneratedQuery], back_translation_v
         
         print(augmented_record, end="\n\n")
         augmented_records.append(augmented_record)
+
+    print("Augmentation complete.", augmented_records, end="\n\n")
 
     return augmented_records

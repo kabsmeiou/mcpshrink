@@ -8,7 +8,7 @@ from src.query.generation.helpers import generate_templates_for_all_tools, expan
 from src.server import create_mcp_server
 from src.query.generation.helpers import get_mcp_tools
 
-from src.query.augmentation.services import load_augmentation_config, generate_augmented_queries
+from src.query.augmentation.services import load_augmentation_config, generate_augmented_queries, load_augmentors_config
 from src.query.augmentation.utils import save_dataset_to_csv
 
 
@@ -34,9 +34,7 @@ def generate_queries() -> List[GeneratedQuery]:
     return expanded_records
 
 
-def query_augmentation(records: List[GeneratedQuery], back_translation_variants: int = 1, 
-                       noise_injection_variants: int = 1, random_augmentation_variants: int = 1,
-                       exclude: List[str] = [], seed: int = 1) -> List[AugmentedQuery]:
+def query_augmentation(records: List[GeneratedQuery]) -> List[AugmentedQuery]:
     """
     Applies augmentors (back-translation, noise injection, random augmentation) 
     to each record's template query, generating the specified number of variants for each method 
@@ -45,26 +43,27 @@ def query_augmentation(records: List[GeneratedQuery], back_translation_variants:
 
     Args:
         records (List[GeneratedQuery]): List of records containing template and paraphrased query.
-        back_translation_variants (int): Number of augmented variants for back-translation.
-        noise_injection_variants (int): Number of augmented variants for noise injection.
-        random_augmentation_variants (int): Number of augmented variants for random augmentation.
         exclude (List[str]): Techniques to skip (e.g., ["back_translation"]). Default is []. Valid options are 
         "back_translation", "noise_injection", "random_augmentation".
-        seed (int): Random seed for reproducibility.
 
     Returns:
         List[AugmentedQuery]: Records with added augmented templates per technique.
     """
 
+    augmentation_config = load_augmentation_config()
+    print("Loaded augmentation config:", augmentation_config)
+
+    # Seed for reproducibility, only working for backtranslation so far
+    seed = augmentation_config.get("seed", 1)
     random.seed(seed)
-    augmentors = load_augmentation_config()
-    
+
+    # Exclude certain techniques if specified in config
+    exclude = augmentation_config.get("exclude", [])
+    augmentors = load_augmentors_config()
     active_augmentors = {name: aug for name, aug in augmentors.items() if name not in exclude}
     
     print("Augmenting templates for all records...\n")
-    augmented_records = generate_augmented_queries(records, back_translation_variants, 
-                                                   noise_injection_variants, random_augmentation_variants, 
-                                                   active_augmentors)
+    augmented_records = generate_augmented_queries(records, augmentation_config, active_augmentors)
 
     print(f"Saving dataset...")
     save_dataset_to_csv(augmented_records, seed)
@@ -74,10 +73,7 @@ def query_augmentation(records: List[GeneratedQuery], back_translation_variants:
 
 def main():
     records = generate_queries()
-
-    augmented_records = query_augmentation(records, back_translation_variants=1, 
-                                           noise_injection_variants=2, random_augmentation_variants=1, seed=10)
-    print(augmented_records)
+    augmented_records = query_augmentation(records)
 
 
 if __name__ == "__main__":

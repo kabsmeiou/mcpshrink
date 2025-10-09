@@ -10,7 +10,7 @@ paths:
 
 dataset:
   name: "my_dataset"
-  target_size: 1000 
+  target_size: 1000
 
 templater:
   model: "openai/gpt-oss-20b"
@@ -24,9 +24,51 @@ generator:
   temperature: 0.8
 
 augmenter:
+  seed: 10
+  # exclude (List[str]): Techniques to skip (e.g., ["back_translation"]).
+  # Valid options are "back_translation", "noise_injection", "random_augmentation".
+  exclude: []
   enabled: true
   methods:
     - "back_translation"
     - "noise_injection"
     - "random_augmentation"
-  queries_per_method: 3
+  back_translation_variants: 1
+  noise_injection_variants: 1
+  random_augmentation_variants: 1
+  augmentors:
+    # float values should range from 0 - 1
+    # min_augment and max_augment should be integers >= 1,
+    # preferably min_augment = max_augment for consistency
+
+    back_translation:
+      hops: 2
+
+    noise_injection:
+      typo_params:
+        word_percentage: 0.2
+        char_percentage: 0.1
+        min_augment: 1
+        max_augment: 2
+      swapletter_params:
+        word_percentage: 0.2
+        char_percentage: 0.1
+        min_augment: 1
+        max_augment: 1
+
+    random_augmentation:
+      synonym_params:
+        word_percentage: 0.2
+        min_augment: 1
+        max_augment: 1
+      swap_params:
+        word_percentage: 0.2
+        min_augment: 1
+        max_augment: 1
+      delete_params:
+        word_percentage: 0.2
+        min_augment: 1
+        max_augment: 1
+      insert_count: 1
+      mixup_count: 2
+      stopwords: ["it", "as"]
