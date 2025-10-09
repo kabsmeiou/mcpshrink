@@ -1,14 +1,29 @@
+import pandas as pd
 import yaml
-import json, os
-from typing import Dict, List
+import os
+from typing import Dict
 
 
-def save_dataset_to_json(records: Dict, seed: int):
-    path = f"datasets/seed_{seed}.json"
+def save_dataset_to_csv(records: Dict, seed: int):
+    with open("config.yaml", "r", encoding="utf-8") as f:
+        config = yaml.safe_load(f)
+    
+    path = config.get("paths", {}).get("output_dir", "")
+    file_path = f"{path}/datasets/seed_{seed}.csv"
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
 
-    os.makedirs(os.path.dirname(path), exist_ok=True)
+    data = []
+    for record in records:
+        data.append({
+            "back_translation_query": record.back_translation_query,
+            "noise_injection_query": record.noise_injection_query,
+            "random_augmentation_query": record.random_augmentation_query,
+            "expanded_query": record.generated_query.expanded_query,
+            "template": record.generated_query.template.template,
+            "tool": record.generated_query.template.tool.name,
+            "mcp_server": record.generated_query.template.mcp_server
+        })
 
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(records, f, indent=4)
-
-    print(f"Saved to {path}")
+    df = pd.DataFrame(data)
+    df.to_csv(file_path, index=False)
+    print(f"Saved to {file_path}")

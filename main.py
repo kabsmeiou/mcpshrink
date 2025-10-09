@@ -2,14 +2,14 @@ from typing import List
 import asyncio
 import random
 
-from src.models import GeneratedQuery
+from src.models import GeneratedQuery, AugmentedQuery
 
 from src.query.generation.helpers import generate_templates_for_all_tools, expand_templates_for_all_records, save_expanded_queries, save_templates
 from src.server import create_mcp_server
 from src.query.generation.helpers import get_mcp_tools
 
 from src.query.augmentation.services import load_augmentation_config, generate_augmented_queries
-from src.query.augmentation.utils import save_dataset_to_json
+from src.query.augmentation.utils import save_dataset_to_csv
 
 
 def generate_queries() -> List[GeneratedQuery]:
@@ -36,12 +36,12 @@ def generate_queries() -> List[GeneratedQuery]:
 
 def query_augmentation(records: List[GeneratedQuery], back_translation_variants: int = 1, 
                        noise_injection_variants: int = 1, random_augmentation_variants: int = 1,
-                       exclude: List[str] = [], seed: int = 1):
+                       exclude: List[str] = [], seed: int = 1) -> List[AugmentedQuery]:
     """
     Applies augmentors (back-translation, noise injection, random augmentation) 
     to each record's template query, generating the specified number of variants for each method 
     as determined by the respective parameters. 
-    Saves results as `datasets/seed_<seed>.json`.
+    Saves results as `seed_<seed>.csv` in `<output_path>/datasets/`.
 
     Args:
         records (List[GeneratedQuery]): List of records containing template and paraphrased query.
@@ -60,14 +60,14 @@ def query_augmentation(records: List[GeneratedQuery], back_translation_variants:
     augmentors = load_augmentation_config()
     
     active_augmentors = {name: aug for name, aug in augmentors.items() if name not in exclude}
-
+    
     print("Augmenting templates for all records...\n")
     augmented_records = generate_augmented_queries(records, back_translation_variants, 
                                                    noise_injection_variants, random_augmentation_variants, 
                                                    active_augmentors)
 
     print(f"Saving dataset...")
-    save_dataset_to_json(augmented_records, seed)
+    save_dataset_to_csv(augmented_records, seed)
 
     return augmented_records
 
