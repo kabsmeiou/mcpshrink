@@ -1,4 +1,5 @@
 from pydantic import BaseModel, Field
+from typing import List
 from .tools import Tool
 
 
@@ -15,4 +16,6 @@ class GeneratedQuery(BaseModel):
 
 class AugmentedQuery(BaseModel):
     generated_query: GeneratedQuery = Field(..., description="The generated query")
-    augmented_query: str = Field(..., description="The augmented query with additional context or information")
+    back_translation_query: List[str] = Field(default=[], description="Back translation augmented query")
+    noise_injection_query: List[str] = Field(default=[], description="Noise injection augmented query")
+    random_augmentation_query: List[str] = Field(default=[], description="Random augmentation augmented query")

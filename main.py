@@ -2,7 +2,7 @@ from typing import List
 import asyncio
 import random
 
-from models import ExpandedRecord
+from src.models import GeneratedQuery
 
 from src.query.generation.helpers import generate_templates_for_all_tools, expand_templates_for_all_records, save_expanded_queries, save_templates
 from src.server import create_mcp_server
@@ -12,7 +12,7 @@ from src.query.augmentation.services import load_augmentation_config, generate_a
 from src.query.augmentation.utils import save_dataset_to_json
 
 
-def generate_queries() -> List[ExpandedRecord]:
+def generate_queries() -> List[GeneratedQuery]:
     mcp = create_mcp_server()
     print("Fetching tools from MCP server...\n")
     tools = asyncio.run(get_mcp_tools(mcp))
@@ -34,21 +34,21 @@ def generate_queries() -> List[ExpandedRecord]:
     return expanded_records
 
 
-def query_augmentation(records: List[ExpandedRecord], n_variants: int = 1, 
+def query_augmentation(records: List[GeneratedQuery], n_variants: int = 1,
                        exclude: List[str] = [], seed: int = 1):
     """
     Applies augmentors (back-translation, noise injection, random augmentation) 
-    to each record's `original_template`, generating `n_variants` per method. 
+    to each record's template query, generating `n_variants` per method. 
     Saves results as `datasets/seed_<seed>.json`.
 
     Args:
-        records (List[ExpandedRecord]): List of records with at least 'original_template'.
+        records (List[GeneratedQuery]): List of records containing template and paraphrased query.
         n_variants (int): Number of augmented variants per technique.
         exclude (List[str]): Techniques to skip (e.g., ["back_translation"]). Default is [].
         seed (int): Random seed for reproducibility.
 
     Returns:
-        List[dict]: Records with added augmented templates per technique.
+        List[AugmentedQuery]: Records with added augmented templates per technique.
     """
 
     random.seed(seed)
@@ -57,18 +57,18 @@ def query_augmentation(records: List[ExpandedRecord], n_variants: int = 1,
     active_augmentors = {name: aug for name, aug in augmentors.items() if name not in exclude}
 
     print("Augmenting templates for all records...\n")
-    records = generate_augmented_queries(records, n_variants, active_augmentors)
+    augmented_records = generate_augmented_queries(records, n_variants, active_augmentors)
 
     print(f"Saving dataset...")
-    save_dataset_to_json(records, seed)
+    save_dataset_to_json(augmented_records, seed)
 
-    return records
+    return augmented_records
 
 
 def main():
     records = generate_queries()
 
-    augmented_records = query_augmentation(records, seed=10)
+    augmented_records = query_augmentation(records, seed=10, n_variants=1)
     print(augmented_records)
 
 
