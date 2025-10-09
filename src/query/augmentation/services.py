@@ -3,13 +3,13 @@ from typing import Dict, List
 
 from models import ExpandedRecord
 
-from query.augmentation.augmentors.back_translation import BackTranslationAugmentor
-from query.augmentation.augmentors.noise_injection import NoiseInjectionAugmentor
-from query.augmentation.augmentors.random_augmentation import RandomAugmentationAugmentor
+from src.query.augmentation.augmentors.back_translation import BackTranslationAugmentor
+from src.query.augmentation.augmentors.noise_injection import NoiseInjectionAugmentor
+from src.query.augmentation.augmentors.random_augmentation import RandomAugmentationAugmentor
 
 
 def load_augmentation_config():
-    config_path = "query/augmentation/config.yaml"
+    config_path = "src/query/augmentation/config.yaml"
     with open(config_path, "r", encoding="utf-8") as f:
         config = yaml.safe_load(f)
 

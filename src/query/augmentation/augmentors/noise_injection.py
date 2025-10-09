@@ -3,7 +3,7 @@ import wikipedia
 import wikipediaapi
 import nlpaug.augmenter.char as nac
 
-from query.augmentation.helpers import regex_tokenizer, merge_params
+from src.query.augmentation.helpers import regex_tokenizer, merge_params
 
 # The first argument is the user agent, can be changed.
 wiki = wikipediaapi.Wikipedia("ShrinkMCP", "en")
