@@ -32,29 +32,37 @@ def load_augmentation_config():
     
     return augmentors
 
-def generate_augmented_queries(records: List[GeneratedQuery], n_variants: int, 
+def generate_augmented_queries(records: List[GeneratedQuery], back_translation_variants: int, 
+                               noise_injection_variants: int, random_augmentation_variants: int,
                                active_augmentors: Dict) -> List[AugmentedQuery]:
+    # Map for number of variants per technique
+    variants_map = {
+        BACK_TRANSLATION: back_translation_variants,
+        NOISE_INJECTION: noise_injection_variants,
+        RANDOM_AUGMENTATION: random_augmentation_variants
+    }
+    # Map for AugmentedQuery attributes
+    aug_attr_map = {
+        BACK_TRANSLATION: "back_translation_query",
+        NOISE_INJECTION: "noise_injection_query",
+        RANDOM_AUGMENTATION: "random_augmentation_query"
+    }
     augmented_records = []
+
     for record in records:
         augmented_record = AugmentedQuery(generated_query=record)
         
         template = record.template.template
         print("Template:", template)
 
-        # Map augmentor names to AugmentedQuery attributes
-        aug_attr_map = {
-            BACK_TRANSLATION: "back_translation_query",
-            NOISE_INJECTION: "noise_injection_query",
-            RANDOM_AUGMENTATION: "random_augmentation_query"
-        }
-
         for aug_name, aug in active_augmentors.items():
-            # Each technique generates n-variants of the original template
+            # Each technique generates the specified variants of the original template
+            n_variants = variants_map.get(aug_name, 0)
+
             for _ in range(n_variants):
                 variant = aug.augment(template)
                 attr = aug_attr_map.get(aug_name)
-                if attr:
-                    getattr(augmented_record, attr).append(variant)
+                getattr(augmented_record, attr).append(variant)
         
         print(augmented_record, end="\n\n")
         augmented_records.append(augmented_record)

@@ -34,17 +34,22 @@ def generate_queries() -> List[GeneratedQuery]:
     return expanded_records
 
 
-def query_augmentation(records: List[GeneratedQuery], n_variants: int = 1,
+def query_augmentation(records: List[GeneratedQuery], back_translation_variants: int = 1, 
+                       noise_injection_variants: int = 1, random_augmentation_variants: int = 1,
                        exclude: List[str] = [], seed: int = 1):
     """
     Applies augmentors (back-translation, noise injection, random augmentation) 
-    to each record's template query, generating `n_variants` per method. 
+    to each record's template query, generating the specified number of variants for each method 
+    as determined by the respective parameters. 
     Saves results as `datasets/seed_<seed>.json`.
 
     Args:
         records (List[GeneratedQuery]): List of records containing template and paraphrased query.
-        n_variants (int): Number of augmented variants per technique.
-        exclude (List[str]): Techniques to skip (e.g., ["back_translation"]). Default is [].
+        back_translation_variants (int): Number of augmented variants for back-translation.
+        noise_injection_variants (int): Number of augmented variants for noise injection.
+        random_augmentation_variants (int): Number of augmented variants for random augmentation.
+        exclude (List[str]): Techniques to skip (e.g., ["back_translation"]). Default is []. Valid options are 
+        "back_translation", "noise_injection", "random_augmentation".
         seed (int): Random seed for reproducibility.
 
     Returns:
@@ -57,7 +62,9 @@ def query_augmentation(records: List[GeneratedQuery], n_variants: int = 1,
     active_augmentors = {name: aug for name, aug in augmentors.items() if name not in exclude}
 
     print("Augmenting templates for all records...\n")
-    augmented_records = generate_augmented_queries(records, n_variants, active_augmentors)
+    augmented_records = generate_augmented_queries(records, back_translation_variants, 
+                                                   noise_injection_variants, random_augmentation_variants, 
+                                                   active_augmentors)
 
     print(f"Saving dataset...")
     save_dataset_to_json(augmented_records, seed)
@@ -68,7 +75,8 @@ def query_augmentation(records: List[GeneratedQuery], n_variants: int = 1,
 def main():
     records = generate_queries()
 
-    augmented_records = query_augmentation(records, seed=10, n_variants=1)
+    augmented_records = query_augmentation(records, back_translation_variants=1, 
+                                           noise_injection_variants=2, random_augmentation_variants=1, seed=10)
     print(augmented_records)
 
 
