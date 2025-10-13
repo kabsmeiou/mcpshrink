@@ -14,9 +14,9 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
 # connect to llm
 _client = None
-
 
 def get_groq_client():
     global _client
