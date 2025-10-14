@@ -1,58 +1,11 @@
-import yaml
 from typing import Dict, List
 
 from src.models import AugmentedQuery, GeneratedQuery
-
-from src.query.augmentation.augmentors.back_translation import BackTranslationAugmentor
-from src.query.augmentation.augmentors.noise_injection import NoiseInjectionAugmentor
-from src.query.augmentation.augmentors.random_augmentation import RandomAugmentationAugmentor
 
 # Augmentor type constants
 BACK_TRANSLATION = "back_translation"
 NOISE_INJECTION = "noise_injection"
 RANDOM_AUGMENTATION = "random_augmentation"
-
-
-def load_augmentation_config() -> Dict:
-    with open("config.yaml", "r", encoding="utf-8") as f:
-        config = yaml.safe_load(f)
-
-    aug_cfg = config.get("augmenter", {})
-
-    seed = aug_cfg.get("seed", {})
-    exclude = aug_cfg.get("exclude", {})
-    back_translation_variants = aug_cfg.get("back_translation_variants", {})
-    noise_injection_variants = aug_cfg.get("noise_injection_variants", {})
-    random_augmentation_variants = aug_cfg.get("random_augmentation_variants", {})
-
-    cfg = {
-        "seed": seed,
-        "exclude": exclude,
-        BACK_TRANSLATION: back_translation_variants,
-        NOISE_INJECTION: noise_injection_variants,
-        RANDOM_AUGMENTATION: random_augmentation_variants
-    }
-    
-    return cfg
-
-
-def load_augmentors_config() -> Dict:
-    with open("config.yaml", "r", encoding="utf-8") as f:
-        config = yaml.safe_load(f)
-
-    aug_cfg = config.get("augmenter", {}).get("augmentors", {})
-
-    backtranslation_config = aug_cfg.get("back_translation", {})
-    noise_injection_config = aug_cfg.get("noise_injection", {})
-    random_augmentation_config = aug_cfg.get("random_augmentation", {})
-
-    augmentors = {
-        BACK_TRANSLATION: BackTranslationAugmentor(**backtranslation_config),
-        NOISE_INJECTION: NoiseInjectionAugmentor(**noise_injection_config),
-        RANDOM_AUGMENTATION: RandomAugmentationAugmentor(**random_augmentation_config)
-    }
-    
-    return augmentors
 
 
 def generate_augmented_queries(records: List[GeneratedQuery], augmentation_config: Dict,
