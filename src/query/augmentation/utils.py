@@ -2,7 +2,8 @@ import pandas as pd
 import yaml
 import os
 from typing import Dict, List
-from src.query.augmentation.augmentors.augmented_query import AugmentedQuery
+
+from src.models import AugmentedQuery
 
 from src.query.augmentation.augmentors.back_translation import BackTranslationAugmentor
 from src.query.augmentation.augmentors.noise_injection import NoiseInjectionAugmentor
