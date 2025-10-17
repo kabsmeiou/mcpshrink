@@ -16,8 +16,5 @@ class GeneratedQuery(BaseModel):
 
 class AugmentedQuery(BaseModel):
     generated_query: GeneratedQuery = Field(..., description="The generated query")
-    augmented_query: str = Field("", description="The augmented query")
-    augmentation_technique: str = Field("", description="The augmentation technique used")
-    back_translation_query: List[str] = Field(default=[], description="Back translation augmented query")
-    noise_injection_query: List[str] = Field(default=[], description="Noise injection augmented query")
-    random_augmentation_query: List[str] = Field(default=[], description="Random augmentation augmented query")
+    augmented_query: str = Field(..., description="The augmented query")
+    augmentation_technique: str = Field(..., description="The augmentation technique used")
