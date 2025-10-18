@@ -12,7 +12,7 @@ import os
 from typing import List, Optional, Dict, Any, Union
 
 logging.basicConfig(
-    filename='src/logs/data_analysis.log',
+    filename='logs/data_analysis.log',
     level=logging.INFO, 
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
