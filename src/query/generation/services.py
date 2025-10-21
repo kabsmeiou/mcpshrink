@@ -1,15 +1,12 @@
-import os
 import logging
-
-from dotenv import load_dotenv
 
 from src.models.tools import Tool
 from src.models.queries import TemplateQuery, GeneratedQuery
 from .utils import extract_json_in_text
 from src.utils import load_config
-from src.groq_client import get_groq_client
+from src.llm_client import get_groq_client
 
-load_dotenv()
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
