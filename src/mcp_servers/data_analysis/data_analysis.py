@@ -10,6 +10,8 @@ import json
 import os
 from typing import List, Optional, Dict, Union
 
+from src.llm_client import get_groq_client
+
 logging.basicConfig(
     filename='logs/data_analysis.log',
     level=logging.INFO, 
@@ -17,8 +19,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger("DataAnalysisMCPServer")
 
-groq_api_key = os.getenv("GROQ_API_KEY")
-groq_client = Groq(api_key=groq_api_key)
+groq_client = get_groq_client()
 VISUAL_MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
 
 
