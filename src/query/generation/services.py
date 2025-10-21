@@ -2,27 +2,16 @@ import os
 import logging
 
 from dotenv import load_dotenv
-from groq import Groq
 
 from src.models.tools import Tool
 from src.models.queries import TemplateQuery, GeneratedQuery
 from .utils import extract_json_in_text
 from src.utils import load_config
-
+from src.groq_client import get_groq_client
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
-
-# connect to llm
-_client = None
-
-def get_groq_client():
-    global _client
-    if _client is None:
-        _client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-    return _client
 
 
 # append the tool_metadata to the end of prompt.
