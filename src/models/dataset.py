@@ -11,9 +11,9 @@ class TeacherPrompt(BaseModel):
     id: int = Field(..., description="Unique identifier for the query")
     query: str = Field(..., description="The query string")
     is_augmented: bool = Field(..., description="Whether the query is augmented")
-    augmentation_technique: str | None = Field(..., description="The technique used for augmentation")
+    augmentation_technique: str | None = Field(default=None, description="The technique used for augmentation")
     tool_name: str = Field(..., description="The name of the tool used")
-    mcp_server: str | None = Field(..., description="The MCP server used")
+    mcp_server: str | None = Field(default=None, description="The MCP server used")
 
 
 # this is the output from the teacher extraction service
@@ -22,5 +22,5 @@ class StudentDataset(BaseModel):
     query: TeacherPrompt = Field(..., description="The original teacher prompt")
     response: str = Field(..., description="The response from the teacher model")
     tool_calls: List[str] = Field(..., description="List of tool calls made by the teacher model in order")
-    model_config: ModelConfig = Field(..., description="Configuration of the model used for extraction")
+    model_cfg: ModelConfig = Field(..., description="Configuration of the model used for extraction")
     
