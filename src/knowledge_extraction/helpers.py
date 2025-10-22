@@ -16,6 +16,8 @@ def get_answers_from_teacher_prompts(prompts: list[TeacherPrompt]) -> list[dict]
     """
     answers = []
     for prompt in prompts:
-        answer = extract_knowledge_from_teacher(prompt.query)
+        mcp_server_url = prompt.mcp_server if isinstance(prompt.mcp_server, str) else getattr(prompt.mcp_server, "url", None)
+        mcp_server_label = getattr(prompt.mcp_server, "label", None) if hasattr(prompt.mcp_server, "label") else "default"
+        answer = extract_knowledge_from_teacher(prompt.query, mcp_server_url, mcp_server_label)
         answers.append(answer)
     return answers
