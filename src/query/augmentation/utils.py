@@ -53,23 +53,26 @@ def load_augmentors_config() -> Dict:
     return augmentors
 
 
-def save_dataset_to_csv(records: List[AugmentedQuery], seed: int):
+def save_dataset_to_csv(augmented_queries: List[AugmentedQuery], seed: int):
     config = load_config("config.yaml", "paths")
     path = config.get("output_dir")
     file_path = f"{path}/datasets/seed_{seed}.csv"
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
+    try:
+        data = []
+        for record in augmented_queries:
+            data.append({
+                "augmented_query": record.augmented_query,
+                "augmentation_technique": record.augmentation_technique,
+                "expanded_query": record.generated_query.expanded_query,
+                "template": record.generated_query.template.template,
+                "tool": record.generated_query.template.tool.name,
+                "mcp_server": record.generated_query.template.mcp_server,
+                "mcp_server_url": record.generated_query.template.mcp_server_url
+            })
 
-    data = []
-    for record in records:
-        data.append({
-            "augmented_query": record.augmented_query,
-            "augmentation_technique": record.augmentation_technique,
-            "expanded_query": record.generated_query.expanded_query,
-            "template": record.generated_query.template.template,
-            "tool": record.generated_query.template.tool.name,
-            "mcp_server": record.generated_query.template.mcp_server
-        })
-
-    df = pd.DataFrame(data)
-    df.to_csv(file_path, index=False)
-    print(f"Saved to {file_path}")
+        df = pd.DataFrame(data)
+        df.to_csv(file_path, index=False)
+        print(f"Augmented Queries are saved to {file_path}.")
+    except Exception as e:
+        print(f"Error saving augmented queries to CSV: {e}")
