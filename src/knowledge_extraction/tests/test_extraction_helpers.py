@@ -36,5 +36,6 @@ def test_get_answers_from_teacher_prompts(mock_extract):
     assert answers[0]["answer"] == "Paris"
     assert answers[1]["answer"] == "George Orwell"
     assert mock_extract.call_count == 2
-    mock_extract.assert_any_call(prompts[0].query)
-    mock_extract.assert_any_call(prompts[1].query)
+    # Update assertions to include all arguments
+    mock_extract.assert_any_call(prompts[0].query, None, None)
+    mock_extract.assert_any_call(prompts[1].query, "http://mcp.example.com", "http://mcp.example.com")

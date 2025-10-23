@@ -69,23 +69,29 @@ def mock_expanded_response():
 
 
 class TestGroqClient:
-    
     @patch.dict(os.environ, {"GROQ_API_KEY": "test-key"})
     def test_get_groq_client_initialization(self):
         """Test that the Groq client is initialized with the API key."""
-        with patch('src.query.generation.services.Groq') as mock_groq:
+        with patch('src.llm_client.Groq') as mock_groq:
             client = get_groq_client()
             mock_groq.assert_called_once_with(api_key="test-key")
             
     @patch.dict(os.environ, {"GROQ_API_KEY": "test-key"})
     def test_get_groq_client_singleton(self):
         """Test that the Groq client is a singleton."""
-        services._client = None  # Reset client for test because previous function initializes it.
-        with patch('src.query.generation.services.Groq') as mock_groq:
+        import src.llm_client
+        src.llm_client._client = None  # Reset the module-level singleton for testing
+        
+        with patch('src.llm_client.Groq') as mock_groq:
+            mock_instance = MagicMock()
+            mock_groq.return_value = mock_instance
+            
             client1 = get_groq_client()
             client2 = get_groq_client()
+            
             mock_groq.assert_called_once_with(api_key="test-key")  # Should only be called once
-            assert client1 == client2  # Should be the same instance
+            assert client1 is client2  # Should be the same instance
+            assert client1 is mock_instance  # Should be the mocked instance
 
 
 class TestGenerateTemplate:
