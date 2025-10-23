@@ -26,7 +26,7 @@ def generate_queries() -> List[GeneratedQuery]:
     print(len(template_records))
     print()
     print("Expanding templates for all records...\n")
-    expanded_records = expand_templates_for_all_records(template_records)
+    expanded_records: List[GeneratedQuery] = expand_templates_for_all_records(template_records)
     save_expanded_queries(expanded_records)
     print(expanded_records)
     print(len(expanded_records))
@@ -63,10 +63,10 @@ def query_augmentation(records: List[GeneratedQuery]) -> List[AugmentedQuery]:
     active_augmentors = {name: aug for name, aug in augmentors.items() if name not in exclude}
     
     print("Augmenting templates for all records...\n")
-    augmented_records = generate_augmented_queries(records, augmentation_config, active_augmentors)
+    augmented_records: List[AugmentedQuery] = generate_augmented_queries(records, augmentation_config, active_augmentors)
 
     print(f"Saving dataset...")
-    save_dataset_to_csv(augmented_records, seed)
+    # save_dataset_to_csv(augmented_records, seed)
 
     return augmented_records
 

@@ -106,9 +106,9 @@ def save_templates_as_csv(records: List[TemplateQuery], file_path: str):
     df.to_csv(file_path, index=False)
 
 
-def save_expanded_queries_as_csv(records: List[GeneratedQuery], file_path: str):
+def save_expanded_queries_as_csv(generated_queries: List[GeneratedQuery], file_path: str):
     data = []
-    for record in records:
+    for record in generated_queries:
         data.append({
             "expanded_query": record.expanded_query,
             "template": record.template.template,

@@ -62,9 +62,9 @@ def save_dataset_to_csv(augmented_queries: List[AugmentedQuery], seed: int):
         data = []
         for record in augmented_queries:
             data.append({
+                "base_query": record.generated_query.expanded_query,
                 "augmented_query": record.augmented_query,
                 "augmentation_technique": record.augmentation_technique,
-                "expanded_query": record.generated_query.expanded_query,
                 "template": record.generated_query.template.template,
                 "tool": record.generated_query.template.tool.name,
                 "mcp_server": record.generated_query.template.mcp_server,
