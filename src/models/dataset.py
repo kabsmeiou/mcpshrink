@@ -14,6 +14,7 @@ class TeacherPrompt(BaseModel):
     augmentation_technique: str | None = Field(default=None, description="The technique used for augmentation")
     tool_name: str = Field(..., description="The name of the tool used")
     mcp_server: str | None = Field(default=None, description="The MCP server used")
+    mcp_server_url: str | None = Field(default=None, description="The MCP server URL used")
 
 
 # this is the output from the teacher extraction service

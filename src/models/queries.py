@@ -7,6 +7,7 @@ class TemplateQuery(BaseModel):
     tool: Tool = Field(..., description="The tool for which the template is generated")
     template: str = Field(..., description="The generated template query")
     mcp_server: str | None = Field(default=None, description="Optional MCP server name the tool belongs to")
+    mcp_server_url: str | None = Field(default=None, description="MCP server URL the tool belongs to")
 
 
 class GeneratedQuery(BaseModel):
