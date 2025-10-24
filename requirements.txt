@@ -1,2 +1,2 @@
 # googletrans dep
-uv pip install googletrans==4.0.2
+googletrans==4.0.2

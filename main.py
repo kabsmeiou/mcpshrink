@@ -66,7 +66,7 @@ def query_augmentation(records: List[GeneratedQuery]) -> List[AugmentedQuery]:
     augmented_records: List[AugmentedQuery] = generate_augmented_queries(records, augmentation_config, active_augmentors)
 
     print(f"Saving dataset...")
-    # save_dataset_to_csv(augmented_records, seed)
+    save_dataset_to_csv(augmented_records, seed)
 
     return augmented_records
 

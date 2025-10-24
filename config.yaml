@@ -14,13 +14,13 @@ dataset:
 
 templater:
   model: "openai/gpt-oss-20b"
-  templates_per_tool: 5
+  templates_per_tool: 2
   temperature: 0.7
   reasoning_effort: "medium"
 
 generator:
   model: "openai/gpt-oss-20b"
-  batch_size: 5
+  batch_size: 2
   temperature: 0.8
 
 augmenter:
