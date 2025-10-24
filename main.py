@@ -72,8 +72,10 @@ def query_augmentation(records: List[GeneratedQuery]) -> List[AugmentedQuery]:
 
 
 def main():
-    records = generate_queries()
-    augmented_records = query_augmentation(records)
+    # records = generate_queries()
+    # augmented_records = query_augmentation(records)
+    mcp = create_mcp_server()
+    mcp.run()
 
 
 if __name__ == "__main__":
