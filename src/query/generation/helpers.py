@@ -34,11 +34,11 @@ async def get_mcp_tools(mcp_server) -> List[Tool]:
     return tool_metadata
 
 
-def generate_templates_for_all_tools(tool_metadata: List[Tool]) -> List[TemplateQuery]:
+def generate_templates_for_all_tools(tool_metadata: List[Tool], mcp_server_url: str | None) -> List[TemplateQuery]:
     records = []
     for tool in tool_metadata:
         templates = generate_template(tool_metadata=tool)
-        records.extend(format_templates(templates, tool))
+        records.extend(format_templates(templates, tool, mcp_server_url))
     return records
 
 

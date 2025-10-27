@@ -62,13 +62,14 @@ def extract_json_in_text(text: str) -> Optional[dict]:
 
 
 ### formatting ###
-def format_templates(templates: dict, tool: Tool) -> List[TemplateQuery]:
+def format_templates(templates: dict, tool: Tool, mcp_server_url: str | None) -> List[TemplateQuery]:
     records = []
     for template in templates["templates"]:
         records.append(TemplateQuery(
             template=template,
             tool=tool,
-            mcp_server=templates.get("mcp_server", None)
+            mcp_server=templates.get("mcp_server", None),
+            mcp_server_url=mcp_server_url
         ))
     return records
 
