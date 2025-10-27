@@ -1,10 +1,15 @@
 
 from src.llm_client import get_groq_client, get_llm_client
 
-from src.knowledge_extraction.utils import format_extraction_result
+from src.knowledge_extraction.utils import prepare_student_dataset
+from src.models.configs import ModelConfig
+from src.models.dataset import TeacherPrompt
+from src.utils import load_config
+
+config: ModelConfig = load_config("config.yaml", section="teacher")
 
 # how to process this by batch?
-def extract_knowledge_from_teacher(query: str, mcp_server_url: str | None,  mcp_server_label: str | None) -> dict:
+def extract_knowledge_from_teacher(teacher_prompt: TeacherPrompt, config: ModelConfig) -> dict:
     """
     Extract knowledge from the given query using an LLM.
 
@@ -16,17 +21,16 @@ def extract_knowledge_from_teacher(query: str, mcp_server_url: str | None,  mcp_
     """
     client = get_llm_client()
     response = client.responses.create(
-        model="openai/gpt-oss-20b",
-        input=query,
+        model=config.get("model_name"),
+        input=teacher_prompt.query,
         tools=[
             {
                 "type": "mcp",
-                "server_label": mcp_server_label,
-                "server_url": mcp_server_url
+                "server_label": teacher_prompt.mcp_server,
+                "server_url": teacher_prompt.mcp_server_url
             }
         ]
     )
-    print(response)
-    formatted_response = format_extraction_result(response)
+    formatted_response = prepare_student_dataset(teacher_prompt, response, config)
     return formatted_response
 

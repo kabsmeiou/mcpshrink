@@ -19,9 +19,8 @@ class TeacherPrompt(BaseModel):
 
 # this is the output from the teacher extraction service
 class StudentDataset(BaseModel):
-    id: int = Field(..., description="Unique identifier for the record")
     query: TeacherPrompt = Field(..., description="The original teacher prompt")
-    response: str = Field(..., description="The response from the teacher model")
-    tool_calls: List[str] = Field(..., description="List of tool calls made by the teacher model in order")
+    reasoning: str = Field(..., description="The reasoning of the teacher model")
+    tool_calls: List[dict] = Field(..., description="List of tool calls made by the teacher model in order")
     model_cfg: ModelConfig = Field(..., description="Configuration of the model used for extraction")
     

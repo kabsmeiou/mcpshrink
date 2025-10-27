@@ -75,7 +75,9 @@ def main():
     # records = generate_queries()
     # augmented_records = query_augmentation(records)
     mcp = create_mcp_server()
-    mcp.run()
+    mcp.run(
+        transport="http"
+    )
 
 
 if __name__ == "__main__":
