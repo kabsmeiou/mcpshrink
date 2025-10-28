@@ -72,3 +72,8 @@ augmenter:
       insert_count: 1
       mixup_count: 2
       stopwords: ["it", "as"]
+
+teacher:
+  model_name: "openai/gpt-oss-20b"
+  temperature: 0.3
+  max_tokens: 1024
