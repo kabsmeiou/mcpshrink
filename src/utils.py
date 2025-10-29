@@ -40,3 +40,17 @@ def remove_square_brackets_from_str(text: str) -> str:
     """
     out = text.replace("[", "").replace("]", "")
     return out
+
+
+def read_csv_file(file_path: str) -> pd.DataFrame:
+    """
+    Reads a CSV file and returns a pandas DataFrame.
+
+    Args:
+        file_path (str): The path to the CSV file.
+
+    Returns:
+        pd.DataFrame: The DataFrame containing the CSV data.
+    """
+    df = pd.read_csv(file_path)
+    return df
