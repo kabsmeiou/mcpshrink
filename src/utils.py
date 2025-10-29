@@ -29,3 +29,14 @@ def save_merged_dataset_to_csv(merged_queries: List[TeacherPrompt], file_path: s
         })
     df = pd.DataFrame(data)
     df.to_csv(file_path, index=False)
+
+def remove_square_brackets_from_str(text: str) -> str:
+    """
+    Removes square brackets from a given string.
+
+    Args:
+        text (str): The input string.
+    
+    """
+    out = text.replace("[", "").replace("]", "")
+    return out

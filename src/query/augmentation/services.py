@@ -24,21 +24,19 @@ def generate_augmented_queries(records: List[GeneratedQuery], augmentation_confi
     augmented_records = []
 
     for record in records:
-        template = record.template.template
-
         for aug_name, aug in active_augmentors.items():
             # Each technique generates the specified variants of the original template
             n_variants = variants_map.get(aug_name, 0)
 
             for _ in range(n_variants):
-                augmented_query = aug.augment(template)
+                augmented_query = aug.augment(record.expanded_query)
                 augmented_record = AugmentedQuery(
                     generated_query=record,
                     augmented_query=augmented_query,
                     augmentation_technique=aug_name
                 )
 
-                print("Template:", template)
+                print("Template:", record.template.template)
                 print(augmented_record, end="\n\n")
                 augmented_records.append(augmented_record)
 
