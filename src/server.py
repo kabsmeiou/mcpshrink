@@ -2,7 +2,7 @@ from fastmcp import FastMCP
 
 
 
-mcp = FastMCP("test")
+mcp = FastMCP("test", stateless_http=True)
 
 @mcp.tool
 def add(a: int, b: int) -> int:
@@ -24,5 +24,10 @@ def count_specific_letter_in_string(input_string: str, letter: str) -> int:
     """Count the number of specific characters in a string"""
     return input_string.count(letter)
 
+
 def create_mcp_server() -> FastMCP:
     return mcp
+
+
+if __name__ == "__main__":
+    mcp.run(transport="http")

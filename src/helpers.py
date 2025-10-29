@@ -1,3 +1,4 @@
+import random
 from typing import List
 
 from fastmcp import FastMCP
@@ -13,29 +14,53 @@ from src.query.augmentation.services import generate_augmented_queries
 from src.query.augmentation.utils import load_augmentation_config, load_augmentors_config, save_dataset_to_csv
 from src.knowledge_extraction.helpers import get_answers_from_teacher_prompts
 
+import logging
+import asyncio
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 def shrinkmcp(mcp_server: FastMCP, mcp_server_url: str):
-    tools = get_mcp_tools(mcp_server)
+    logger.info("Fetching tools from MCP server...\n")
+    tools = asyncio.run(get_mcp_tools(mcp_server))
+    logger.info("Generating templates for all tools...\n")
     template_records = generate_templates_for_all_tools(tools, mcp_server_url)
     save_templates(template_records)
+    logger.info("Expanding templates for all records...\n")
     expanded_records: List[GeneratedQuery] = expand_templates_for_all_records(template_records)
     save_expanded_queries(expanded_records)
+    logger.info("\nDone generating expanded records!\n\n")
     # augment
+    logger.info("Starting query augmentation...\n")
     augmentation_config = load_augmentation_config()
+    print("Loaded augmentation config:", augmentation_config)
+
+    # Seed for reproducibility, only working for backtranslation so far
+    seed = augmentation_config.get("seed", 1)
+    random.seed(seed)
+
+    # Exclude certain techniques if specified in config
+    exclude = augmentation_config.get("exclude", [])
+    augmentors = load_augmentors_config()
+    active_augmentors = {name: aug for name, aug in augmentors.items() if name not in exclude}
     augmented_records: List[AugmentedQuery] = generate_augmented_queries(
         records=expanded_records,
-        augmentation_config=augmentation_config
+        augmentation_config=augmentation_config,
+        active_augmentors=active_augmentors
     )
-    save_dataset_to_csv(augmented_records, filename=f"augmented_dataset_seed_{augmentation_config.get('seed', 1)}.csv")
+    save_dataset_to_csv(augmented_records, seed=seed)
+    logger.info("\nDone with query augmentation!\n\n")
+    logger.info("Merging base and augmented queries and saving to CSV...\n")
     # merge and save
-    merged_dataset = merge_base_queries_and_augmentation_queries(
+    merged_dataset: List[TeacherPrompt] = merge_base_queries_and_augmentation_queries(
         base_queries=expanded_records,
         augmented_queries=augmented_records,
         save_as_csv=True
     )
-    
+    logger.info("\nDone merging datasets!\n\n")
+    logger.info("Extracting knowledge from teacher prompts...\n")
     # extract knowledge from teacher
     answers = get_answers_from_teacher_prompts(merged_dataset)
+    logger.info("\nDone extracting knowledge from teacher prompts!\n\n")
     return answers
 
 

@@ -3,6 +3,11 @@
 # iterate over the TeacherPrompt to extract answers from each prompt
 from src.models.dataset import TeacherPrompt
 from src.knowledge_extraction.services import extract_knowledge_from_teacher
+from src.knowledge_extraction.utils import save_student_dataset_as_csv
+from src.utils import load_config
+
+config = load_config("config.yaml", section="teacher")
+
 
 def get_answers_from_teacher_prompts(prompts: list[TeacherPrompt]) -> list[dict]:
     """
@@ -16,8 +21,7 @@ def get_answers_from_teacher_prompts(prompts: list[TeacherPrompt]) -> list[dict]
     """
     answers = []
     for prompt in prompts:
-        mcp_server_url = prompt.mcp_server if isinstance(prompt.mcp_server, str) else getattr(prompt.mcp_server, "url", None)
-        mcp_server_label = prompt.mcp_server if isinstance(prompt.mcp_server, str) else getattr(prompt.mcp_server, "label", None)
-        answer = extract_knowledge_from_teacher(prompt.query, mcp_server_url, mcp_server_label)
+        answer = extract_knowledge_from_teacher(teacher_prompt=prompt, config=config)
         answers.append(answer)
+    save_student_dataset_as_csv(answers, "output/student_data.csv")
     return answers

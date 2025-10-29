@@ -26,8 +26,8 @@ def extract_knowledge_from_teacher(teacher_prompt: TeacherPrompt, config: ModelC
         tools=[
             {
                 "type": "mcp",
-                "server_label": teacher_prompt.mcp_server,
-                "server_url": teacher_prompt.mcp_server_url
+                "server_label": "Testing-server",
+                "server_url": teacher_prompt.mcp_server_url + "/mcp"
             }
         ]
     )

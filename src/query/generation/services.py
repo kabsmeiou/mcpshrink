@@ -115,5 +115,6 @@ def expand_templates(*, template: str) -> dict:
     logger.debug(type(response_message))
     response_message = extract_json_in_text(response_message)
     if response_message is None:
+        logger.info(response_message)
         raise ValueError("Response from LLM is not valid JSON")
     return response_message
