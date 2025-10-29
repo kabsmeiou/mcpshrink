@@ -24,7 +24,7 @@ generator:
   temperature: 0.8
 
 augmenter:
-  seed: 10
+  seed: 11
   # exclude (List[str]): Techniques to skip (e.g., ["back_translation"]).
   # Valid options are "back_translation", "noise_injection", "random_augmentation".
   exclude: []

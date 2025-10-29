@@ -2,6 +2,7 @@ from typing import List
 import asyncio
 import random
 
+from src.helpers import merge_base_queries_and_augmentation_queries
 from src.models import GeneratedQuery, AugmentedQuery
 
 from src.query.generation.helpers import generate_templates_for_all_tools, expand_templates_for_all_records, save_expanded_queries, save_templates
@@ -72,12 +73,13 @@ def query_augmentation(records: List[GeneratedQuery]) -> List[AugmentedQuery]:
 
 
 def main():
-    # records = generate_queries()
-    # augmented_records = query_augmentation(records)
-    mcp = create_mcp_server()
-    mcp.run(
-        transport="http"
-    )
+    records = generate_queries()
+    augmented_records = query_augmentation(records)
+    merge_base_queries_and_augmentation_queries(
+        base_queries=records,
+        augmented_queries=augmented_records,
+        save_as_csv=True
+    )   
 
 
 if __name__ == "__main__":

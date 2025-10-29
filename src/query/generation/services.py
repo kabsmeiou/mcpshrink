@@ -85,18 +85,18 @@ def expand_templates(*, template: str) -> dict:
                 Here is an example of a template and its corresponding expanded query:
                 Template: "I have {{a}} apples and {{b}} oranges. How many fruits do I have in total?"
                 Expanded Templates: [
-                    "I have 3 apples and 5 oranges. How many fruits do I have in total?",
-                    "If I obtained 10 apples and 15 oranges, how many fruits do I have altogether?",
-                    "I saw 3251 mangoes, 1234 bananas, and 5639 lettuce in the market. How many fruits did I see in total?",
+                    "I have [3] apples and [5] oranges. How many fruits do I have in total?",
+                    "If I obtained [10] apples and [15] oranges, how many fruits do I have altogether?",
+                    "I saw [3251] mangoes, [1234] bananas, and [5639] lettuce in the market. How many fruits did I see in total?",
                 ]
 
                 Response example:
                 ```
                 {{
                 "expanded_templates": [
-                    "I have 3 apples and 5 oranges. How many fruits do I have in total?",
-                    "If I obtained 10 apples and 15 oranges, how many fruits do I have altogether?",
-                    "I harvested 333 apples and 222 oranges from my farm. I want to know the total number of fruits I have.",
+                    "I have [3] apples and [5] oranges. How many fruits do I have in total?",
+                    "If I obtained [10] apples and [15] oranges, how many fruits do I have altogether?",
+                    "I harvested [333] apples and [222] oranges from my farm. I want to know the total number of fruits I have.",
                 ]
                 }}```
                 """
