@@ -21,7 +21,7 @@ def generate_queries() -> List[GeneratedQuery]:
     print(tools)
     print(len(tools))
     print("Generating templates for all tools...\n")
-    template_records = generate_templates_for_all_tools(tools)
+    template_records = generate_templates_for_all_tools(tools, mcp_server_url="https://01b996655acc.ngrok-free.app")
     save_templates(template_records)
     print(template_records)
     print(len(template_records))
@@ -67,16 +67,14 @@ def query_augmentation(records: List[GeneratedQuery]) -> List[AugmentedQuery]:
     augmented_records: List[AugmentedQuery] = generate_augmented_queries(records, augmentation_config, active_augmentors)
 
     print(f"Saving dataset...")
-    save_dataset_to_csv(augmented_records, seed)
+    # save_dataset_to_csv(augmented_records, seed)
 
     return augmented_records
 
 
 def main():
     mcp = create_mcp_server()
-    mcp_server_url = "https://fca297621bbd.ngrok-free.app"
-    shrinkmcp(mcp, mcp_server_url)
-
-
+    shrinkmcp(mcp, "https://447527e447d6.ngrok-free.app")
+    
 if __name__ == "__main__":
     main()

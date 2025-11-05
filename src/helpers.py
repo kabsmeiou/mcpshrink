@@ -13,6 +13,9 @@ from src.query.generation.helpers import get_mcp_tools
 from src.query.augmentation.services import generate_augmented_queries
 from src.query.augmentation.utils import load_augmentation_config, load_augmentors_config, save_dataset_to_csv
 from src.knowledge_extraction.helpers import get_answers_from_teacher_prompts
+from src.sft.helpers import parse_and_format_student_data
+from src.sft.utils import format_data_for_sft, save_jsonl_file
+from src.sft.tune import tune_student_model
 
 import logging
 import asyncio
@@ -61,8 +64,19 @@ def shrinkmcp(mcp_server: FastMCP, mcp_server_url: str):
     # extract knowledge from teacher
     answers = get_answers_from_teacher_prompts(merged_dataset)
     logger.info("\nDone extracting knowledge from teacher prompts!\n\n")
+    
+    # format student data for SFT
+    logger.info("Formatting student dataset for SFT...\n")
+    formatted_data = parse_and_format_student_data("output/student_data.csv")
+    logger.info("✅ Student dataset formatted and saved to output/student_data_sft.jsonl")
+    # fine-tune student model
+    logger.info("Starting fine-tuning of the student model...\n")
+    tune_student_model(
+        model_name="unsloth/gemma-2b",
+        data_path="output/student_data_sft.jsonl",
+        student_model_path="demo-student-model"
+    )
     return answers
-
 
 
 def merge_base_queries_and_augmentation_queries(

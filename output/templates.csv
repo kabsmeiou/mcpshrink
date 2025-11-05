@@ -1,0 +1,7 @@
+template,tool,mcp_server
+What is the sum of [a] and [b]?,add,
+"If I give you [a] apples and you give me [b] apples, how many apples do we have together?",add,
+What is the result when you multiply [a] by [b]?,multiply,
+Calculate the product of [a] and [b] for me.,multiply,
+"Please concatenate the greeting ""Hello"" with the name [str1] to produce a friendly welcome message.",concatenate_strings,
+I have two parts of an email subject: the prefix [str1] and the suffix [str2]. Could you combine them into one subject line?,concatenate_strings,

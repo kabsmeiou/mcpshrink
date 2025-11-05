@@ -20,8 +20,12 @@ def get_answers_from_teacher_prompts(prompts: list[TeacherPrompt]) -> list[dict]
         list[dict]: List of dictionaries containing the extracted answers.
     """
     answers = []
-    for prompt in prompts:
-        answer = extract_knowledge_from_teacher(teacher_prompt=prompt, config=config)
-        answers.append(answer)
-    save_student_dataset_as_csv(answers, "output/student_data.csv")
+    try: 
+        for prompt in prompts:
+            answer = extract_knowledge_from_teacher(teacher_prompt=prompt, config=config)
+            answers.append(answer)
+        save_student_dataset_as_csv(answers, "output/student_data.csv")
+    except Exception as e:
+        print(f"Error processing prompt ID {prompt.id}: {e}")
+        save_student_dataset_as_csv(answers, "output/student_data.csv")
     return answers

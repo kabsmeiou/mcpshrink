@@ -21,17 +21,15 @@ def parse_student_dataset_from_csv(file_path: str) -> List[dict]:
 def format_data_for_sft(student_datasets: List[dict]) -> List[dict]:
     formatted_data = []
     for record in student_datasets:
-        # Convert tool calls list to pretty JSON text
         tool_calls_text = json.dumps(record["tool_calls"], indent=2)
 
-        # Combine reasoning + tool calls in a readable form
-        output_text = (
-            f"Reasoning: {record['reasoning']}\n\n"
-            f"Tool Calls:\n{tool_calls_text}"
-        )
+        output_text = {
+            "reason": f"<reasoning>{record['reasoning']}</reasoning>\n",
+            "tool_calls": f"<tool>{tool_calls_text}</tool>"
+        }
 
         formatted_record = {
-            "instruction": record["query"],
+            "input": record["query"],
             "output": output_text
         }
 

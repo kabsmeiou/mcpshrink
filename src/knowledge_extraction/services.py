@@ -20,17 +20,20 @@ def extract_knowledge_from_teacher(teacher_prompt: TeacherPrompt, config: ModelC
         dict: The extracted knowledge as a dictionary.
     """
     client = get_llm_client()
-    response = client.responses.create(
-        model=config.get("model_name"),
-        input=teacher_prompt.query,
-        tools=[
-            {
-                "type": "mcp",
-                "server_label": "Testing-server",
-                "server_url": teacher_prompt.mcp_server_url + "/mcp"
-            }
-        ]
-    )
+    try: 
+        response = client.responses.create(
+            model=config.get("model_name"),
+            input=teacher_prompt.query,
+            tools=[
+                {
+                    "type": "mcp",
+                    "server_label": "Testing-server",
+                    "server_url": teacher_prompt.mcp_server_url + "/mcp"
+                }
+            ]
+        )
+    except Exception as e:
+        print(f"Error generating response for prompt ID {teacher_prompt.id}: {e}")
     formatted_response = prepare_student_dataset(teacher_prompt, response, config)
     return formatted_response
 
