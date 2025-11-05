@@ -1,0 +1,81 @@
+id,query,is_augmented,augmentation_technique,tool_name,mcp_server,mcp_server_url
+1,What is the sum of 12 and 7?,False,,add,,https://447527e447d6.ngrok-free.app
+2,Calculate the total of 45 and 23.,False,,add,,https://447527e447d6.ngrok-free.app
+3,What is the sum of 100 and 250?,False,,add,,https://447527e447d6.ngrok-free.app
+4,"If I give you 4 apples and you give me 7 apples, how many apples do we have together?",False,,add,,https://447527e447d6.ngrok-free.app
+5,Suppose I give you 12 apples and you give me 9 apples; how many apples do we have in total?,False,,add,,https://447527e447d6.ngrok-free.app
+6,Let’s say I give you 15 apples and you give me 20 apples. What is the combined number of apples?,False,,add,,https://447527e447d6.ngrok-free.app
+7,What is the result when you multiply 7 by 9?,False,,multiply,,https://447527e447d6.ngrok-free.app
+8,What is the result when you multiply 12 by 4?,False,,multiply,,https://447527e447d6.ngrok-free.app
+9,What is the result when you multiply 3 by 15?,False,,multiply,,https://447527e447d6.ngrok-free.app
+10,Can you calculate the product of 6 and 9 for me?,False,,multiply,,https://447527e447d6.ngrok-free.app
+11,Please find the product of 12 and 15 and let me know the result.,False,,multiply,,https://447527e447d6.ngrok-free.app
+12,I would like to know the product of 23 and 4; could you compute it?,False,,multiply,,https://447527e447d6.ngrok-free.app
+13,Please concatenate the greeting 'Hello' with the name Alice to produce a friendly welcome message.,False,,concatenate_strings,,https://447527e447d6.ngrok-free.app
+14,Please concatenate the greeting 'Hello' with the name Bob to produce a friendly welcome message.,False,,concatenate_strings,,https://447527e447d6.ngrok-free.app
+15,Please concatenate the greeting 'Hello' with the name Charlie to produce a friendly welcome message.,False,,concatenate_strings,,https://447527e447d6.ngrok-free.app
+16,I have the email subject prefix str1 and the suffix str2. Can you merge them into a single subject line for me?,False,,concatenate_strings,,https://447527e447d6.ngrok-free.app
+17,"Given the prefix str1 and suffix str2 of an email subject, please combine them into one complete subject line.",False,,concatenate_strings,,https://447527e447d6.ngrok-free.app
+18,Could you join the two parts of an email subject—str1 as the prefix and str2 as the suffix—into a single coherent subject line?,False,,concatenate_strings,,https://447527e447d6.ngrok-free.app
+19,What is the sum of 12 and 7?,True,back_translation,add,,https://447527e447d6.ngrok-free.app
+20,"The Meehan Range ( MEE-ən-RAYNJ) is a prominent geographic feature in southeastern Tasmania, consisting of steep hills and ridges running parallel to the River Derwent on the eastern shore of Hobart. Wzht is the sum of 12 and 7?",True,noise_injection,add,,https://447527e447d6.ngrok-free.app
+21,The is sum of 12 7 and?,True,random_augmentation,add,,https://447527e447d6.ngrok-free.app
+22,Calculate the sum of 45 and 23,True,back_translation,add,,https://447527e447d6.ngrok-free.app
+23,"Henry Hardin ""Zipp"" Newman (May 24, 1894 – March 3, 1977) was an American sportswriter known as the ""Dean of Southern Sports Writers."". Caiculaet the gotla of 45 and 23.",True,noise_injection,add,,https://447527e447d6.ngrok-free.app
+24,Calculate the acetize of total 45 and 23.,True,random_augmentation,add,,https://447527e447d6.ngrok-free.app
+25,What is the sum of 100 and 250?,True,back_translation,add,,https://447527e447d6.ngrok-free.app
+26,"José Sisto, also called José Sisto Rodrigo and José Sixto, was twice Governor of Guam, first after overthrowing Francisco Martínez Portusach, and again after being legitimately placed in the position by the United States government. Nwat is the sum of 100 and 250?",True,noise_injection,add,,https://447527e447d6.ngrok-free.app
+27,What is of 100 and 250?,True,random_augmentation,add,,https://447527e447d6.ngrok-free.app
+28,"If I give you 4 apples and you give me 7 apples, how many apples do we have together?",True,back_translation,add,,https://447527e447d6.ngrok-free.app
+29,"Lewis John Edwards OBE (27 May 1904 – 23 November 1959) was a British university lecturer, trade union leader and Labour Party politician who sat in the House of Commons of the United Kingdom and was President of the Parliamentary Assembly of the Council of Europe.. If I igvs you 4 papies and you give me 7 aplpfs, how many apples do we ahde tlgether?",True,noise_injection,add,,https://447527e447d6.ngrok-free.app
+30,"If I give you 4 apples and you me give apples 7, how many apples make we have together?",True,random_augmentation,add,,https://447527e447d6.ngrok-free.app
+31,Let's say I give you 12 apples and you give me 9 apples; How many apples do we have?,True,back_translation,add,,https://447527e447d6.ngrok-free.app
+32,"Based on the National Basketball Association (NBA), it is the 21st installment in the NBA 2K franchise, the successor to NBA 2K19, and the predecessor to NBA 2K21. Spulose I gide you 12 apples and you gvid me 9 appels; how amny qpples do we have in tktal?",True,noise_injection,add,,https://447527e447d6.ngrok-free.app
+33,Suppose give Iodin you 12 apples and you give me 9 apples; how many apples do we in have total?,True,random_augmentation,add,,https://447527e447d6.ngrok-free.app
+34,Suppose I give you 15 apples and you give me 20 apples. What is the total number of apples?,True,back_translation,add,,https://447527e447d6.ngrok-free.app
+35,"Primarily centered in the United States, it collaborates internationally.. Let ’ s say I giev you 15 apples and you igge me 20 aplles. Wmat is the cmobinee njuber of apples?",True,noise_injection,add,,https://447527e447d6.ngrok-free.app
+36,S let ’ say I give you 15 apples and indium you give me 20 apples. What is the combined number of apples?,True,random_augmentation,add,,https://447527e447d6.ngrok-free.app
+37,What is the result when we multiply 7 by 9?,True,back_translation,multiply,,https://447527e447d6.ngrok-free.app
+38,"Cirsonella pisiformis is a minute sea snail, a marine gastropod mollusc in the family Skeneidae.. Whah is the redutl wehn you mlhtiply 7 by 9?",True,noise_injection,multiply,,https://447527e447d6.ngrok-free.app
+39,What is result the when multiply you 7 by 9?,True,random_augmentation,multiply,,https://447527e447d6.ngrok-free.app
+40,What is the result of multiplying 12 by 4?,True,back_translation,multiply,,https://447527e447d6.ngrok-free.app
+41,"Lattimore and his partner began working on the site and mimicked the look and design of the Coalition for Marriage website as a spoof, with Facebook and Twitter campaigns launched a day later. Wahh is the resklt hwej you mlutiply 12 by 4?",True,noise_injection,multiply,,https://447527e447d6.ngrok-free.app
+42,What be resultant the you when multiply 12 by 4?,True,random_augmentation,multiply,,https://447527e447d6.ngrok-free.app
+43,What is the result when you multiply 3 by 15?,True,back_translation,multiply,,https://447527e447d6.ngrok-free.app
+44,"The event was held twice during the 2023–24 and 2024–25 A-League seasons in Sydney, in partnership with Destination NSW. Wxht is the ersulh when you mulrpily 3 by 15?",True,noise_injection,multiply,,https://447527e447d6.ngrok-free.app
+45,What is result the when you multiply 3 15 by?,True,random_augmentation,multiply,,https://447527e447d6.ngrok-free.app
+46,Can you calculate the product of 6 and 9 for me?,True,back_translation,multiply,,https://447527e447d6.ngrok-free.app
+47,"Aiden Thomas (born July 14, c.1989) is an American author of young adult novels, best known for the book Cemetery Boys which was a New York Times bestseller and won numerous awards, including best of the year recognition from the American Library Association, Publishers Weekly, Barnes & Noble, NPR and School Library Journal.. Can you calcluahe the lrodcut of 6 and 9 for me?",True,noise_injection,multiply,,https://447527e447d6.ngrok-free.app
+48,You cypher the of 6 and 9 for maine?,True,random_augmentation,multiply,,https://447527e447d6.ngrok-free.app
+49,Find the product of 12 and 15 and let me know the result.,True,back_translation,multiply,,https://447527e447d6.ngrok-free.app
+50,He was inducted into the Green Bay Packers Hall of Fame in 1987.. Plfaes find the rpoducr of 12 and 15 and let me konw the redult.,True,noise_injection,multiply,,https://447527e447d6.ngrok-free.app
+51,Please find the product of 12 and and 15 let maine know the. result,True,random_augmentation,multiply,,https://447527e447d6.ngrok-free.app
+52,I want to know the product of 23 and 4. can you count,True,back_translation,multiply,,https://447527e447d6.ngrok-free.app
+53,"Notable people with the surname include:
+
+Julia Sawalha (born 1968), English actress
+Nabil Sawalha (born 1941), Jordanian comedian
+Nadia Sawalha (born 1964), English actress and television presenter
+Nadim Sawalha (born 1935), Jordanian-British actor
+Woroud Sawalha (born 1991), Palestinian middle distance runner. I owuld ilue to kbwo the product of 23 and 4; foudl you cpmpute it?",True,noise_injection,multiply,,https://447527e447d6.ngrok-free.app
+54,Atomic number 53 like know the product of 23 and 4; could you compute it?,True,random_augmentation,multiply,,https://447527e447d6.ngrok-free.app
+55,Link the greeting “Hello” to the name Alice to create a friendly welcome message.,True,back_translation,concatenate_strings,,https://447527e447d6.ngrok-free.app
+56,"Highway 156 (AR 156, Ark. Please concatenate the greetniy ' Hello ' dtih the name Alice to produce a friendlu weclome meswsge.",True,noise_injection,concatenate_strings,,https://447527e447d6.ngrok-free.app
+57,Concatenate the greeting ' Hello ' with the name Alice produce a favorable welcome substance.,True,random_augmentation,concatenate_strings,,https://447527e447d6.ngrok-free.app
+58,"Combine the greeting ""Hello"" with the name Bob to create a friendly welcome message.",True,back_translation,concatenate_strings,,https://447527e447d6.ngrok-free.app
+59,"John Turtle Wood (13 February 1821 – 25 March 1890) was an English architect, engineer and archaeologist.. Please ocncstsnaet the greetinh ' Ehlpo ' with the anme Bob to produce a friednlu welcome message.",True,noise_injection,concatenate_strings,,https://447527e447d6.ngrok-free.app
+60,Please concatenate the greeting ' Hello ' with the Bob to produce a welcome message.,True,random_augmentation,concatenate_strings,,https://447527e447d6.ngrok-free.app
+61,"Create a friendly welcome message by diluting the greeting ""Hello"" with the name Charlie.",True,back_translation,concatenate_strings,,https://447527e447d6.ngrok-free.app
+62,"It is owned by Connoisseur Media and has an oldies radio format made up of hits from the 60s And 70s 
+The station's studios and offices are located at Airport Plaza in Farmingdale, New York, and its transmitter is located off the Southern State Parkway at Milburn Avenue in Hempstead. Pleade concatenate the greeitng ' Hekol ' with the anme Charlie to prodice a friendly welcomw emssage.",True,noise_injection,concatenate_strings,,https://447527e447d6.ngrok-free.app
+63,Please the concatenate greeting Hello ' ' with the name Charlie to produce a Mercedarian friendly welcome message.,True,random_augmentation,concatenate_strings,,https://447527e447d6.ngrok-free.app
+64,I have email subject prefix str1 and suffix str2. Can you merge them into one subject line for me?,True,back_translation,concatenate_strings,,https://447527e447d6.ngrok-free.app
+65,"The Treaty of Paris was signed on 7 February 1623, between France, Savoy, and Venice.
+All three signatories agreed to re-establish the territory of Valtelline by attempting to remove Spanish forces stationed there.. I hzev the meail subjest prdfix str1 and the suffix str2. Can you merge htwm itbo a snigle subject line for me?",True,noise_injection,concatenate_strings,,https://447527e447d6.ngrok-free.app
+66,I have the email subject prefix str1 and the suffix str2. Can merge you napper them into a subject single line for me?,True,random_augmentation,concatenate_strings,,https://447527e447d6.ngrok-free.app
+67,"For email subject prefix str1 and suffix str2, please combine them into one complete subject line.",True,back_translation,concatenate_strings,,https://447527e447d6.ngrok-free.app
+68,"This general area, which also included Surginer and Hampden, was originally known as Pineville Precinct. Givej the prfeix str1 and surfix str2 of an eamkl subject, plaese combien them into one complete subjfct iien.",True,noise_injection,concatenate_strings,,https://447527e447d6.ngrok-free.app
+69,"Give the prefix str1 and suffix str2 of an electronic mail subject please, them combine into one complete subject line.",True,random_augmentation,concatenate_strings,,https://447527e447d6.ngrok-free.app
+70,Is it possible to combine the two parts of the email subject (prefix str1 and suffix str2) into one consistent subject line?,True,back_translation,concatenate_strings,,https://447527e447d6.ngrok-free.app
+71,He was a member of the Sixth Legislative Assembly of Delhi and represented Gokalpur (Assembly constituency) of Delhi. Could you ojin the two parts of an ehial sunbect — str1 as the preeix and str2 as the suffia — inot a single choerent subjecr iine?,True,noise_injection,concatenate_strings,,https://447527e447d6.ngrok-free.app
+72,Could you join the two of an email subject — str1 as the prefix and str2 as the — into single a coherent line subject?,True,random_augmentation,concatenate_strings,,https://447527e447d6.ngrok-free.app

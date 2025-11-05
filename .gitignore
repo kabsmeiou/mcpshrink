@@ -19,6 +19,7 @@ notebooks/
 query_augmentation/
 
 # others
-/output
 /data
 /logs
+*-student-model*/
+*unsloth_compiled_cache/
