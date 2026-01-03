@@ -23,3 +23,6 @@ query_augmentation/
 /logs
 *-student-model*/
 *unsloth_compiled_cache/
+
+
+checkpoint-*

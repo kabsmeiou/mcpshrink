@@ -134,3 +134,11 @@ class RandomAugmentationAugmentor:
             func = getattr(self, func_name)
             text = func(text)
         return text
+    
+
+# apply random augmentations
+query = "If I initially had 99 apples and added 249 more, how many apples would I end up with?"
+augmentor = RandomAugmentationAugmentor()
+augmented_query = augmentor.augment(query)
+print("Original Query:", query)
+print("Augmented Query:", augmented_query)

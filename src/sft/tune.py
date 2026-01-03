@@ -8,7 +8,7 @@ from src.sft.helpers import parse_and_format_student_data
 MODEL_NAME = "unsloth/gemma-2b" 
 DATA_PATH = "output/student_data_sft.jsonl"
 MAX_SEQ_LEN = 1024
-EPOCHS = 4
+EPOCHS = 5
 LR = 2e-4
 BATCH_SIZE = 2
 STUDENT_MODEL_PATH = "finetuned-student-model"
@@ -73,4 +73,4 @@ def tune_student_model(model_name=MODEL_NAME, data_path=DATA_PATH, student_model
     trainer.save_model(student_model_path)
     print(f"✅ Fine-tuning complete! Model saved to {student_model_path}")
 
-tune_student_model(data_path="output/full_demo.jsonl", student_model_path="full-demo-student-model-4e")
+# tune_student_model(data_path="output/full_demo.jsonl", student_model_path="full-demo-student-model-4e")
