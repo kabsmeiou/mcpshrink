@@ -69,14 +69,14 @@ def shrinkmcp(mcp_server: FastMCP, mcp_server_url: str):
     logger.info("Formatting student dataset for SFT...\n")
     formatted_data = parse_and_format_student_data("output/student_data.csv")
     logger.info("✅ Student dataset formatted and saved to output/student_data_sft.jsonl")
-    # fine-tune student model
-    logger.info("Starting fine-tuning of the student model...\n")
-    tune_student_model(
-        model_name="unsloth/gemma-2b",
-        data_path="output/student_data_sft.jsonl",
-        student_model_path="demo-student-model"
-    )
-    return answers
+    # # fine-tune student model
+    # logger.info("Starting fine-tuning of the student model...\n")
+    # tune_student_model(
+    #     model_name="unsloth/gemma-2b",
+    #     data_path="output/student_data_sft.jsonl",
+    #     student_model_path="demo-student-model"
+    # )
+    # return answers
 
 
 def merge_base_queries_and_augmentation_queries(

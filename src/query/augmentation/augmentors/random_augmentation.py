@@ -27,7 +27,7 @@ class RandomAugmentationAugmentor:
         swap_params: Optional[Dict] = None,
         delete_params: Optional[Dict] = None,
         insert_count: int = 1,
-        mixup_count: int = 2,
+        mixup_count: int = 1,
         stopwords: Optional[List[str]] = None
     ):
         """
@@ -134,11 +134,3 @@ class RandomAugmentationAugmentor:
             func = getattr(self, func_name)
             text = func(text)
         return text
-    
-
-# apply random augmentations
-query = "If I initially had 99 apples and added 249 more, how many apples would I end up with?"
-augmentor = RandomAugmentationAugmentor()
-augmented_query = augmentor.augment(query)
-print("Original Query:", query)
-print("Augmented Query:", augmented_query)

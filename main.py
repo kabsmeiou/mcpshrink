@@ -74,7 +74,7 @@ def query_augmentation(records: List[GeneratedQuery]) -> List[AugmentedQuery]:
 
 def main():
     mcp = create_mcp_server()
-    shrinkmcp(mcp, "https://62619701d2c8.ngrok-free.app")
+    shrinkmcp(mcp, "https://c2b1087f017e.ngrok-free.app")
     
 if __name__ == "__main__":
     main()

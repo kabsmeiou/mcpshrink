@@ -26,7 +26,6 @@ VISUAL_MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
 def create_mcp_server():
     mcp = FastMCP(
         "data_analysis",
-        description="A suite of data analysis tools for processing and analyzing datasets."
     )
 
     @mcp.tool

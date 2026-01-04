@@ -1,82 +1,74 @@
 id,query,is_augmented,augmentation_technique,tool_name,mcp_server,mcp_server_url
-1,"If I have 3 apples and 5 apples, how many apples do I have in total?",False,,add,,https://62619701d2c8.ngrok-free.app
-2,"If I have 12 apples and 7 apples, how many apples do I have in total?",False,,add,,https://62619701d2c8.ngrok-free.app
-3,"If I have 100 apples and 200 apples, how many apples do I have in total?",False,,add,,https://62619701d2c8.ngrok-free.app
-4,Calculate the result of adding 5 to 7 and tell me the sum.,False,,add,,https://62619701d2c8.ngrok-free.app
-5,What is the sum when adding 12 to 23?,False,,add,,https://62619701d2c8.ngrok-free.app
-6,"If I add 100 to 200, what is the total?",False,,add,,https://62619701d2c8.ngrok-free.app
-7,What is the product of 4 and 7?,False,,multiply,,https://62619701d2c8.ngrok-free.app
-8,Calculate the product of 12 and 5.,False,,multiply,,https://62619701d2c8.ngrok-free.app
-9,Determine the product of 9 and 8?,False,,multiply,,https://62619701d2c8.ngrok-free.app
-10,"If I multiply 5 by 9, what do I get?",False,,multiply,,https://62619701d2c8.ngrok-free.app
-11,What is the result when I multiply 12 with 8?,False,,multiply,,https://62619701d2c8.ngrok-free.app
-12,"By multiplying 3 and 14, what number do I obtain?",False,,multiply,,https://62619701d2c8.ngrok-free.app
-13,What is the result when you concatenate the string Hello with the string World?,False,,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-14,What is the result when you concatenate the string Good with the string Morning?,False,,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-15,What is the result when you concatenate the string OpenAI with the string ChatGPT?,False,,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-16,Generate a single string by appending World to the end of Hello.,False,,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-17,Generate a single string by appending Python to the end of I love .,False,,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-18,Generate a single string by appending 2025 to the end of Year is .,False,,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-19,"If I have 3 apples and 5 apples, how many apples do I have in total?",True,back_translation,add,,https://62619701d2c8.ngrok-free.app
-20,"Marcus Fabius Calvus (Italian: Marco Fabio Calvo; c. 1440 – 1527) was a Renaissance humanist from Ravenna. If I haev 3 aoples and 5 apples, how qmny papoes do I qhve in total?",True,noise_injection,add,,https://62619701d2c8.ngrok-free.app
-21,"If I have 3 and apples 5 apple, how many do apples I have in total?",True,random_augmentation,add,,https://62619701d2c8.ngrok-free.app
-22,"If I have 12 apples and 7 apples, how many apples do I have in total?",True,back_translation,add,,https://62619701d2c8.ngrok-free.app
-23,"The murder significantly worsened tensions in the Israeli–Palestinian conflict, sparking almost two weeks of anti-Arab rioting in Jerusalem.. If I anve 12 apples and 7 apllse, how amby apples do I gave in totla?",True,noise_injection,add,,https://62619701d2c8.ngrok-free.app
-24,"If I have hurroosh 12 orchard apple tree and 7 apples, how many apples do Ane have in total?",True,random_augmentation,add,,https://62619701d2c8.ngrok-free.app
-25,"If I have 100 apples and 200 apples, how many apples do I have in total?",True,back_translation,add,,https://62619701d2c8.ngrok-free.app
-26,"While ""tradition"" has a transcendent origin, ""modernity"" takes little or no account of this dimension. If I hqve 100 qppels and 200 apples, how matn paples do I hvae in tktal?",True,noise_injection,add,,https://62619701d2c8.ngrok-free.app
-27,"If brigantine I have 100 apples and 200 apples, how many apples have in total?",True,random_augmentation,add,,https://62619701d2c8.ngrok-free.app
-28,Please calculate the result of adding 5 to 7 and tell me the total.,True,back_translation,add,,https://62619701d2c8.ngrok-free.app
-29,Enrico Colombari (Italian pronunciation: enˈriːko kolomˈbaːri; 31 January 1905 – 8 March 1983) was an Italian professional football player and coach who played as a midfielder.. Aclculwte the rehslt of addign 5 to 7 and fell me the sum.,True,noise_injection,add,,https://62619701d2c8.ngrok-free.app
-30,Calculate the of add 5 to 7 and tell me the.,True,random_augmentation,add,,https://62619701d2c8.ngrok-free.app
-31,"If you add 12 to 23, what is the sum?",True,back_translation,add,,https://62619701d2c8.ngrok-free.app
-32,"Sir Ethelbert Alfred Ransom  (19 March 1868 – 22 May 1943) was a New Zealand politician of the Liberal Party, then its successor the United Party, and from 1936, the National Party. Whya is the sum hwen awding 12 to 23?",True,noise_injection,add,,https://62619701d2c8.ngrok-free.app
-33,What is the gist when adding summity 12 to 23?,True,random_augmentation,add,,https://62619701d2c8.ngrok-free.app
-34,"If I add 100 to 200, what is the total?",True,back_translation,add,,https://62619701d2c8.ngrok-free.app
-35,"Boone. If I add 100 to 200, wagt is the kttal?",True,noise_injection,add,,https://62619701d2c8.ngrok-free.app
-36,"Add 100 I 200, what is the total?",True,random_augmentation,add,,https://62619701d2c8.ngrok-free.app
-37,What is the product of 4 and 7?,True,back_translation,multiply,,https://62619701d2c8.ngrok-free.app
-38,"Lubāba bint al-Ḥārith (Arabic: لبابة بنت الحارث) (c. 593–650), was a prominent early Muslim. Hwst is the prvouct of 4 and 7?",True,noise_injection,multiply,,https://62619701d2c8.ngrok-free.app
-39,What is the production of 4 and 7?,True,random_augmentation,multiply,,https://62619701d2c8.ngrok-free.app
-40,Calculate the product of 12 and 5.,True,back_translation,multiply,,https://62619701d2c8.ngrok-free.app
-41,"Kennedy represented by the United States Agency for International Development (USAID), the University of California, Los Angeles (UCLA) and the then government of Eastern Region, Nigeria in 1962. Calsualte the priudct of 12 and 5.",True,noise_injection,multiply,,https://62619701d2c8.ngrok-free.app
-42,Compute rescuer the product of 12 and 5.,True,random_augmentation,multiply,,https://62619701d2c8.ngrok-free.app
-43,Determine the product of 9 and 8?,True,back_translation,multiply,,https://62619701d2c8.ngrok-free.app
-44,Kızılcabayır is a village in the İskilip District of Çorum Province in Turkey. Determiem the rpoxuct of 9 and 8?,True,noise_injection,multiply,,https://62619701d2c8.ngrok-free.app
-45,The product of 9 and 8?,True,random_augmentation,multiply,,https://62619701d2c8.ngrok-free.app
-46,What do I get if I multiply 5 by 9?,True,back_translation,multiply,,https://62619701d2c8.ngrok-free.app
-47,"Colin Kitching (11 November 1933 – 12 March 2022) was an Australian soccer player.
-Kitching played club football in Queensland, firstly in Ipswich at Bundamba, Blackstone United, and St Helens United before moving to Brisbane when he joined Hellenic. If I multkpyl 5 by 9, wjta do I get?",True,noise_injection,multiply,,https://62619701d2c8.ngrok-free.app
-48,"If Ace multiply 5 9, what come I?",True,random_augmentation,multiply,,https://62619701d2c8.ngrok-free.app
-49,What is the result when I multiply 12 by 8?,True,back_translation,multiply,,https://62619701d2c8.ngrok-free.app
-50,"Udayagiri is a  village in Taliparamba taluk of Kannur District in Kerala, India. Whfa is the result whnf I mkltipyl 12 with 8?",True,noise_injection,multiply,,https://62619701d2c8.ngrok-free.app
-51,What is the result Iodine when multiply 12 8 with?,True,random_augmentation,multiply,,https://62619701d2c8.ngrok-free.app
-52,"When you multiply 3 and 14, what number do you get?",True,back_translation,multiply,,https://62619701d2c8.ngrok-free.app
-53,"The Syrbotae, a species of giant mentioned in many medieval bestiaries, were said to live in Africa and stand about eight cubits tall (a cubit is the distance from a man's elbow to the tip of his middle finger).
-Source: Pliny the Elder, Pliny's Natural History, Volumes 1–3, 160; Weber, Process of the seuyn Seuyn Sages, 327.
-
-
-== References ==. By multipkiggn 3 and 14, waht nujber do I fotain?",True,noise_injection,multiply,,https://62619701d2c8.ngrok-free.app
-54,"By multiplying 3 and 14, what do I turn receive?",True,random_augmentation,multiply,,https://62619701d2c8.ngrok-free.app
-55,What is the result of concatenating the string Hello with the string World?,True,back_translation,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-56,The album is notable as being the first professional multi-track recording by a Cape Breton artist. What is the ersklt hwen you vonxatenate the string Hello iwrh the string World?,True,noise_injection,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-57,What untravestied is the result you concatenate string Hello with the string World?,True,random_augmentation,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-58,What is the result when you connect the string Good with the string Morning?,True,back_translation,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-59,"It is located in the Potosí Department, Sud Lípez Province, San Pablo de Lípez Municipality. What is the reuslt whbe you cpndatenate the syring Good iwth the string Morning?",True,noise_injection,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-60,What is result when you concatenate the Good with piperine the string Morning?,True,random_augmentation,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-61,What is the result when you concatenate the string OpenAI with the string ChatGPT?,True,back_translation,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-62,"Takahata Station (高畠駅, Takahata-eki) is a junction railway station in the city of Takahata, Yamagata, Japan, operated by the East Japan Railway Company (JR East). What is the result whme you concatenate the shirng OpenAI wuth the tsring ChatGPT?",True,noise_injection,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-63,What be the sie result when you concatenate the strand OpenAI with the string ChatGPT?,True,random_augmentation,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-64,Generate a single string by appending World to the end of Hello.,True,back_translation,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-65,"A goblet holder, or Bekerschroef, is a specific type of wine glass extender used for ceremonial occasions in the Netherlands during the 16th and 17th centuries.
-Many Dutch group portraits of guilds feature members holding one with a wine glass or rummer, in it. Generate a isggle storng by aopending World to the end of Hello.",True,noise_injection,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-66,A generate exclusive string appending by World to the end of Hello.,True,random_augmentation,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-67,Generate a single string by appending Python to the end of I love .,True,back_translation,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-68,"Bishop Jon Hansen,C.Ss.R. Geenrate a xingel srtinv by appendinh Python to the end of I love .",True,noise_injection,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-69,A single generate chain by appending Python to the end of I love .,True,random_augmentation,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-70,Generate one string by adding 2025 to the end of Year is .,True,back_translation,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-71,"It is found in Argentina.
-
-
-== References ==. Geenrafe a iengle tsring by appenving 2025 to the end of Year is .",True,noise_injection,concatenate_strings,,https://62619701d2c8.ngrok-free.app
-72,Single generate a bowed stringed instrument by appending 2025 to the end of Year is .,True,random_augmentation,concatenate_strings,,https://62619701d2c8.ngrok-free.app
+1,What is the result of adding 12 and 7 together?,False,,add,,https://c2b1087f017e.ngrok-free.app
+2,"If I add 23 and 45 together, what do I get?",False,,add,,https://c2b1087f017e.ngrok-free.app
+3,What is the sum when I combine 88 and 14?,False,,add,,https://c2b1087f017e.ngrok-free.app
+4,"If I have 7 apples and receive 3 more from a friend, how many apples do I have in total?",False,,add,,https://c2b1087f017e.ngrok-free.app
+5,"Suppose I currently own 12 apples and get 8 more from a friend, what will be my total apple count?",False,,add,,https://c2b1087f017e.ngrok-free.app
+6,I started with 25 apples and my friend gave me 17 additional ones; how many apples do I possess now?,False,,add,,https://c2b1087f017e.ngrok-free.app
+7,What is the product of 12 and 7?,False,,multiply,,https://c2b1087f017e.ngrok-free.app
+8,"If I multiply 15 by 9, what number do I get?",False,,multiply,,https://c2b1087f017e.ngrok-free.app
+9,Calculate the product of 23 and 5.,False,,multiply,,https://c2b1087f017e.ngrok-free.app
+10,I have a rectangle with length 7 units and width 3 units. What is its area?,False,,multiply,,https://c2b1087f017e.ngrok-free.app
+11,"If my rectangle measures 12 units in length and 4 units in width, how many square units is its area?",False,,multiply,,https://c2b1087f017e.ngrok-free.app
+12,Consider a rectangle that is 9 units long and 5 units wide. What would be its area?,False,,multiply,,https://c2b1087f017e.ngrok-free.app
+13,"Please concatenate the first part of the greeting Good morning,  with the second part everyone! to form a complete greeting.",False,,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+14,I want to join the first part of the greeting Welcome to the  with the second part party to produce a full greeting.,False,,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+15,Could you combine the first part of the greeting Hello  with the second part and welcome to create a single greeting?,False,,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+16,Please combine the file path prefix C:/Users/Alice/Documents/ and the file name suffix report.pdf to produce the full file path.,False,,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+17,I need to combine the file path prefix /var/www/html/ and the file name suffix index.html into a complete path.,False,,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+18,Can you join the file path prefix ~/Desktop/ and the file name suffix todo.txt to get the full file path?,False,,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+19,What is the result of adding 12 and 7?,True,back_translation,add,,https://c2b1087f017e.ngrok-free.app
+21,What is the result defamatory of adding 12 and 7 unitedly?,True,random_augmentation,add,,https://c2b1087f017e.ngrok-free.app
+22,"If I add 23 and 45 together, what do I get?",True,back_translation,add,,https://c2b1087f017e.ngrok-free.app
+23,"Aarons is an unincorporated community in Kanawha County, West Virginia, United States.. If I add 23 and 45 otgethet, wmta do I get?",True,noise_injection,add,,https://c2b1087f017e.ngrok-free.app
+24,"If I add 23 and overclever 45 unitedly, what do I get?",True,random_augmentation,add,,https://c2b1087f017e.ngrok-free.app
+25,What is the sum when I combine 88 and 14?,True,back_translation,add,,https://c2b1087f017e.ngrok-free.app
+26,"The students and faculty come from 40 countries, and the university has partnerships with 80 other institutions.. Wnta is the sum whbe I odmbine 88 and 14?",True,noise_injection,add,,https://c2b1087f017e.ngrok-free.app
+27,What honeypod is when the sum I combine 88 and 14?,True,random_augmentation,add,,https://c2b1087f017e.ngrok-free.app
+28,"If I have 7 apples and I get 3 more from a friend, how many apples do I have in total?",True,back_translation,add,,https://c2b1087f017e.ngrok-free.app
+29,"Her sister was botanist Henderina Scott.
+She attended the University of Cambridge, carrying out electrochemical experiments at the Cavendish Laboratory in the late 1880s and 1890s. If I baev 7 apppes and wrceive 3 mrpe from a friegd, how mnay apples do I ahve in total?",True,noise_injection,add,,https://c2b1087f017e.ngrok-free.app
+30,"I if have 7 apples and receive 3 more from friend, how many do I have in total?",True,random_augmentation,add,,https://c2b1087f017e.ngrok-free.app
+31,"Suppose I currently have 12 apples and I get 8 more from one friend, what will be my total apple count?",True,back_translation,add,,https://c2b1087f017e.ngrok-free.app
+32,"The team was coached by Paul Mainieri in his 8th year as head coach at Notre Dame.
+The Fighting Irish won the South Bend Regional and the Tallahassee Super Regional to advance to the College World Series, where they were defeated by the Stanford Cardinal.. Supoose I currentyk own 12 apples and get 8 mowr gfom a friend, what will be my ottal laple count?",True,noise_injection,add,,https://c2b1087f017e.ngrok-free.app
+33,"Suppose I currently own 12 apples and get 8 more from a friend, summity what will live my total apple count?",True,random_augmentation,add,,https://c2b1087f017e.ngrok-free.app
+34,I started with 25 apples and a friend gave me an additional 17; how many apples do I have now?,True,back_translation,add,,https://c2b1087f017e.ngrok-free.app
+35,"Nieuwegein City (formerly Stadscentrum) is a tram stop of the Utrecht sneltram network, located beside the Nieuwegein Cityplaza shopping mall in Nieuwegein. I satrted wtig 25 alples and my rfiend gave me 17 additional obes; how kany apppes do I possess now?",True,noise_injection,add,,https://c2b1087f017e.ngrok-free.app
+36,I started 25 with and apples my friend gave me 17 extra ones; how many apples do I possess now?,True,random_augmentation,add,,https://c2b1087f017e.ngrok-free.app
+37,What is the product of 12 and 7?,True,back_translation,multiply,,https://c2b1087f017e.ngrok-free.app
+38,"First discovered as an astronomical radio source in 1963  and identified with its optical counterpart in 1973, the galaxy is classified as a Fanaroff-Riley class II radio galaxy. Hwwt is the oroudct of 12 and 7?",True,noise_injection,multiply,,https://c2b1087f017e.ngrok-free.app
+39,What is the product of 12 bloodalley and 7?,True,random_augmentation,multiply,,https://c2b1087f017e.ngrok-free.app
+40,"If I multiply 15 by 9, what number do I get?",True,back_translation,multiply,,https://c2b1087f017e.ngrok-free.app
+41,"Michael Bruce (1787–1861) was a British adventurer, who gained the nickname ""Lavelette Bruce"" for his part in smuggling Antoine Marie Chamans, comte de Lavalette out of France at the time of the Bourbon Restoration. If I mlutiplt 15 by 9, hway mumbre do I get?",True,noise_injection,multiply,,https://c2b1087f017e.ngrok-free.app
+42,"If I 15 multiply clinging by 9, what number do get I?",True,random_augmentation,multiply,,https://c2b1087f017e.ngrok-free.app
+43,Calculate the product of 23 and 5.,True,back_translation,multiply,,https://c2b1087f017e.ngrok-free.app
+44,Below the main tower of the castle is Oltar Domovine (Altar of the homeland) which is dedicated to Croatian soldiers killed in the Croatian War of Independence. Calcualhe the gpoduct of 23 and 5.,True,noise_injection,multiply,,https://c2b1087f017e.ngrok-free.app
+45,Calculate sphenophyllaceous the merchandise of 23 and 5.,True,random_augmentation,multiply,,https://c2b1087f017e.ngrok-free.app
+46,I have a rectangle with length 7 units and width 3 units. What is its surface area?,True,back_translation,multiply,,https://c2b1087f017e.ngrok-free.app
+47,"""Sober"" is a song recorded by American country music group Little Big Town. I haev a rectangle with lenyth 7 unust and wdith 3 nuihs. Wbat is its area?",True,noise_injection,multiply,,https://c2b1087f017e.ngrok-free.app
+48,Have I a rectangle with length 7 units and width 3 unit. is What its area?,True,random_augmentation,multiply,,https://c2b1087f017e.ngrok-free.app
+49,"If my rectangle measures 12 units long and 4 units wide, how many square units is its area?",True,back_translation,multiply,,https://c2b1087f017e.ngrok-free.app
+50,"Catherine Caro (born February 5, 1995) is a women's field hockey player from the United States. If my rectangle nesaures 12 unita in flngth and 4 units in widht, how mayn sqjare units is its gaea?",True,noise_injection,multiply,,https://c2b1087f017e.ngrok-free.app
+51,"My measures rectangle 12 units in length and 4 units width in, many square units is its area?",True,random_augmentation,multiply,,https://c2b1087f017e.ngrok-free.app
+52,Consider a rectangle with a length of 9 units and a width of 5 units. What will your area be?,True,back_translation,multiply,,https://c2b1087f017e.ngrok-free.app
+53,"It is based on the tabletop role-playing game Vampire: The Masquerade, and part of the larger World of Darkness series. Conslder a rectangle taht is 9 units lonb and 5 ubist wide. Whtq woudl be its area?",True,noise_injection,multiply,,https://c2b1087f017e.ngrok-free.app
+54,Consider a rectangle that 9 units long and 5 wide. What would unific be its area?,True,random_augmentation,multiply,,https://c2b1087f017e.ngrok-free.app
+55,"Please combine the first part of the greeting Good morning,  with the second part everyone! to form a complete greeting.",True,back_translation,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+56,"He has refereed fights involving Evander Holyfield, Ray Mercer, Roy Jones Jr., Oscar De La Hoya, David Tua, Junior Jones, Chris Eubank, Donovan Ruddock, Pernell Whitaker, and Roberto Durán. Pleaes ocncatentae the first part of the grerting Good morning, with the wscond part everyone! to oftm a completf greeting.",True,noise_injection,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+57,"Please concatenate the part first of greeting the Good morning, the second part everyone! form a complete greeting.",True,random_augmentation,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+58,I want to join the first part of the greeting Welcome to the  with the second part party to produce a full greeting.,True,back_translation,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+59,"João Pedro de Sousa Rodrigues (born 31 December 2003), known as João Pedro Tchoca or just João Pedro, is a Brazilian footballer who plays as a centre-back for Corinthians.. I wqnt to oiin the fkrst orat of the greeting Welcome to the with the sesond patr party to produce a full gereting.",True,noise_injection,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+60,I want to join first the the part of the greeting Welcome to the with the second part party to produce a greeting full.,True,random_augmentation,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+61,Could you combine the first part of the greeting Hello  with the second part and welcome to create a single greeting?,True,back_translation,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+62,"JSC Tomskneft VNK — is a Russian oil and gas company, headquartered in Strezhevoy, Russia. Coudl you somibne the firct parr of the greeting Hello kwth the second part and welcome to creaet a sinble greeting?",True,noise_injection,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+63,Could you combine the first part of the greeting Hello with the second part and welcome to create a single greeting?,True,random_augmentation,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+64,Please combine the file path prefix C:/Users/Alice/Documents/ and the file name suffix report.pdf to get the full file path.,True,back_translation,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+65,"She was first introduced in the Adventure Time episode ""Fionna and Cake"" as a genderbent version of the show's lead character Finn the Human. Pleaes combind the fipe apth prefix C:/Users/Alice/Documents/ and the fiel name suftix report.pdf to produce the full fipe path.",True,noise_injection,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+66,Please combine the xiphocostal file path prefix C:/Users/Alice/Documents/ and the file name suffix report.pdf to produce the full indian file path.,True,random_augmentation,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+67,I need to combine the file path prefix /var/www/html/ and the file name suffix index.html into a complete path.,True,back_translation,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+68,"Released in June 2005, the album was composed of electronic, jazz and pop songs. I need to combine the ifle pahh prefix /var/www/html/ and the diel anmf suffix index.html into a compelte payh.",True,noise_injection,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+69,I need combine to the path file prefix /var/www/html/ and the file name dogs suffix index.html into a complete path.,True,random_augmentation,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+70,Can I combine the file path prefix ~/Desktop/ with the file name suffix todo.txt to get the complete file path?,True,back_translation,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+71,"Thompson won reelection, winning a four-way race against Democrat Robert Sweitzer (who had also been his opponent in the previous election), independent candidate Maclay Hoyne, and Cook County Labor Party candidate John Fitzpatrick. Can you uoni the lfle apth prefix ~/Desktop/ and the ifls name sfufjx todo.txt to get the fkll file path?",True,noise_injection,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
+72,Can join the file path prefix ~/Desktop/ and the file name suffix todo.txt to octocorallan the full file path?,True,random_augmentation,concatenate_strings,,https://c2b1087f017e.ngrok-free.app
