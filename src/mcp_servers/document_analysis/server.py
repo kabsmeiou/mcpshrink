@@ -63,43 +63,43 @@ mcp = FastMCP(
 #     # Your implementation here
 #     raise NotImplementedError("fetch_section is not implemented yet.")
 
-@mcp.tool
-def summarize_text(text: str, maximum_sentences: int) -> str:
-    """
-    Summarizes the input text to a specified number of sentences.
+# @mcp.tool
+# def summarize_text(text: str, maximum_sentences: int) -> str:
+#     """
+#     Summarizes the input text to a specified number of sentences.
 
-    Args:
-        text (str): The text to summarize.
-        maximum_sentences (int): The maximum number of sentences in the summary.
+#     Args:
+#         text (str): The text to summarize.
+#         maximum_sentences (int): The maximum number of sentences in the summary.
 
-    Returns:
-        str: The summarized text.
-    """
-    try:
-        prompt = f"Summarize the following text in no more than {maximum_sentences} sentences:\n\n{text}"
+#     Returns:
+#         str: The summarized text.
+#     """
+#     try:
+#         prompt = f"Summarize the following text in no more than {maximum_sentences} sentences:\n\n{text}"
 
-        completion = groq_client.chat.completions.create(
-            model=TEACHER_MODEL,
-            messages=[
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": prompt}
-                    ]
-                }
-            ],
-            temperature=0.7,
-            max_completion_tokens=512,
-            top_p=1,
-            stream=False,
-            stop=None,
-        )
+#         completion = groq_client.chat.completions.create(
+#             model=TEACHER_MODEL,
+#             messages=[
+#                 {
+#                     "role": "user",
+#                     "content": [
+#                         {"type": "text", "text": prompt}
+#                     ]
+#                 }
+#             ],
+#             temperature=0.7,
+#             max_completion_tokens=512,
+#             top_p=1,
+#             stream=False,
+#             stop=None,
+#         )
         
-        return completion.choices[0].message.content
+#         return completion.choices[0].message.content
 
-    except Exception as e:
-        logger.error(f"Error in generate_report: {str(e)}")
-        return f"Error generating report: {str(e)}"
+#     except Exception as e:
+#         logger.error(f"Error in generate_report: {str(e)}")
+#         return f"Error generating report: {str(e)}"
     
     
 @mcp.tool

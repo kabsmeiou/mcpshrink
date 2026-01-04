@@ -1,5 +1,5 @@
 import yaml
-from typing import List
+from typing import Any, List
 import os
 
 import pandas as pd

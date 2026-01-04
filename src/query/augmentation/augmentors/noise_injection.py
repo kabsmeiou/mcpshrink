@@ -18,8 +18,8 @@ class NoiseInjectionAugmentor:
 
     def __init__(
         self,
-        typo_params: dict = None,
-        swapletter_params: dict = None
+        typo_params: dict | None = None,
+        swapletter_params: dict | None = None
     ):
         """
         Initialize the noise injection augmentor.
@@ -99,7 +99,7 @@ class NoiseInjectionAugmentor:
 
         return text
 
-    def augment(self, text: str, add_lexical: bool = True, add_semantic: bool = True) -> str:
+    def augment(self, text: str, add_lexical: bool = False, add_semantic: bool = True) -> str:
         """
         Apply a full augmentation pipeline:
         1. Lexical noise (optional)
